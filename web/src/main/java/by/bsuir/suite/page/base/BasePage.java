@@ -6,7 +6,7 @@ import by.bsuir.suite.session.HostelAuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
 
 /**
- * @author i.sukach
+ * @author Igor Sukach
  */
 public abstract class BasePage extends WebPage {
 
