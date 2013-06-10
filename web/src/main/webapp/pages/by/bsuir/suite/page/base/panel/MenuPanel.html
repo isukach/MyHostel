@@ -16,8 +16,14 @@
                 <span class="tooltip"><wicket:message key="menu.panel.label.search"></wicket:message></span>
             </span>
         </span>
-        <span id="profile_button" class="icon link_in_header" wicket:id="profileLinkContainer">
-            <a href="#search" wicket:id="profileLink"></a>
+        <span id="notifications_button" class="icon link_in_header">
+            <a href="#notifications"></a>
+            <span class="tooltip-container">
+                <span class="tooltip">Notifications</span>
+            </span>
+        </span>
+        <span id="profile_button" class="icon link_in_header">
+            <empty wicket:id="profileLinkPanel"/>
             <span class="tooltip-container">
                 <span class="tooltip"><wicket:message key="menu.panel.label.profile"></wicket:message></span>
             </span>

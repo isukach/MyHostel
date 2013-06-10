@@ -1,7 +1,156 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <wicket:extend>
     <div id="content">
-        <div wicket:id="additionUserWorkPanel"></div>
+        <div id="workTabs" class="tabs">
+            <div class="tab-bar">
+                <span class="tab" data-for="summary">Summary</span>
+                <span class="tab active_stage" data-for="myWorks">My Works</span>
+            </div>
+            <div class="tab-content" id="summary">
+                <table id="worksSummary">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Hours</th>
+                        <th>Number Of People</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor,
+                            labore minus nihil obcaecati, provident qui quia, quibusdam repudiandae sapiente sint
+                            temporibus vero voluptas. Animi earum mollitia, necessitatibus quasi quod sapiente?
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Ab aspernatur autem, debitis dicta enim facilis fugiat harum ipsa
+                            laudantium magnam molestiae nisi, numquam quam recusandae reiciendis rem repellendus
+                            reprehenderit, vel? Explicabo facere non quaerat? Error est reiciendis unde?
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">A accusantium animi aspernatur assumenda aut blanditiis commodi
+                            distinctio enim eos illo, impedit in minima molestias natus non officia quia quis ratione
+                            repellat rerum similique soluta velit voluptatum? Exercitationem, provident.
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Autem dolores eos, excepturi natus nesciunt perspiciatis qui.
+                            Debitis eligendi error esse labore libero magni possimus quasi repellat unde voluptates.
+                            Beatae consequuntur doloremque dolores enim et minus quae ratione? Earum?
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Commodi culpa eum ex fuga necessitatibus neque nulla perferendis
+                            provident quas ratione! Adipisci consequuntur deleniti deserunt dolor dolores error
+                            expedita, iste, iusto modi nesciunt quo, rem tempore temporibus veniam voluptatum.
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Adipisci amet cupiditate facere, impedit maxime modi. Aut beatae
+                            culpa cupiditate dolore doloribus earum eius enim eos impedit ipsa magnam nemo, nobis, porro
+                            possimus quas quo tempora temporibus voluptates? Exercitationem!
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Aspernatur consequuntur et repudiandae. Ab ad aliquam culpa cum
+                            dicta dolorem ea enim esse facilis itaque magnam maiores nisi nostrum numquam omnis quidem
+                            recusandae suscipit, ut, veniam vitae, voluptas voluptates.
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="work-date">09.06.2013 22:44</td>
+                        <td class="work-description">Consequatur, est, et facere fugit in libero officia perferendis
+                            quae quisquam repudiandae, saepe tempora. Consectetur consequuntur eaque eligendi, facere
+                            hic maiores, necessitatibus nobis pariatur possimus, quisquam repellendus sed voluptatem
+                            voluptatibus.
+                        </td>
+                        <td class="work-hours">4</td>
+                        <td class="work-people">8</td>
+                        <td class="work-actions"><span>
+                        <button></button>
+                        <button></button>
+                        </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-content" id="myWorks">
+                <div wicket:id="additionUserWorkPanel"></div>
+            </div>
+        </div>
     </div>
+    <!--begin of temporary script-->
+    <script type="text/javascript">
+        var tabs = document.querySelectorAll('.tab');
+        var tabsContent = document.querySelectorAll('.tab-content');
+        var tabsLength = tabs.length;
+        var tabsContentLength = tabsContent.length;
+        for (var i = 0; i < tabsLength; i++) {
+            tabs[i].addEventListener('click', function (event) {
+                var dataFor = event.currentTarget.dataset['for'];
+                for (var j = 0; j < tabsContentLength; j++) {
+                    var tabContent = tabsContent[j];
+                    if (tabsContent.id === dataFor) {
+                        tabContent.style.display = 'block';
+                    } else {
+                        tabContent.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+    <!--end of temporary script-->
 </wicket:extend>
 </html>

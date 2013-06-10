@@ -221,6 +221,7 @@ span.icon .tooltip-container {
     word-spacing: normal;
     height: 20px;
     width: 55px;
+    z-index: 99999999;
 }
 
 span.icon .tooltip-container .tooltip {
@@ -2509,5 +2510,244 @@ input[type="checkbox"] {
 .change-password-form input[type="button"] {
     margin-right: 7px;
 }
+
+#notificationsContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0);
+    z-index: 9999;
+}
+
+#notifications {
+    position: absolute;
+    background: white;
+    border: 2px solid #616161;
+    width: 384px;
+    top: 75px;
+    right: 55px;
+    z-index: 999;
+    padding: 15px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#notifications::before {
+    content: "";
+    border-style: solid;
+    border-width: 0 20px 20px 20px;
+    border-color: transparent transparent #616161 transparent;
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin: 0 0 0 -20px;
+}
+
+#notifications::after {
+    content: "";
+    border-style: solid;
+    border-width: 0 20px 20px 20px;
+    border-color: transparent transparent #fff transparent;
+    display: block;
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    margin: 0 0 0 -20px;
+}
+
+#notifications #notificationsHeader {
+    width: 100%;
+    height: 30px;
+    margin: 0 0 15px 0;
+}
+
+#notifications #notificationsHeader #closeNotifications {
+    float: right;
+    height: 30px;
+    margin: 0;
+    line-height: 30px;
+    padding: 0 5px;
+}
+
+#notifications #notificationsHeader h2 {
+    height: 30px;
+    margin: 0;
+    line-height: 30px;
+    padding: 0;
+}
+
+#notifications #notificationsList {
+    max-height: 400px;
+    margin: 0 -15px;
+    overflow: auto;
+}
+
+#notifications #notificationsList .notification-item {
+    padding: 0 15px;
+}
+
+#notifications #notificationsList .notification-item .notification-date {
+    float: right;
+    height: 21px;
+    display: block;
+    line-height: 21px;
+    color: #888;
+    font-size: 11pt;
+}
+
+#notifications #notificationsList .notification-item .notification-category {
+    height: 17px;
+    width: 17px;
+    float: left;
+    display: block;
+    padding: 0;
+    margin: 2px 10px 2px 0;
+}
+
+.network-indicator {
+    background-color: #7235b8;
+}
+
+.work-indicator {
+    background-color: #c63655;
+}
+
+.duty-indicator {
+    background-color: #ffa200;
+}
+
+.questions-indicator {
+    background-color: #148011;
+}
+
+.events-indicator {
+    background-color: #00b0f0;
+}
+
+.penalty-indicator {
+    background-color: #000000;
+}
+
+.other-indicator {
+    background-color: #616161;
+}
+
+#notifications #notificationsList .notification-item .notification-header {
+    font-size: 12pt;
+    height: 21px;
+    line-height: 21px;
+}
+
+#notifications #notificationsList .notification-item p {
+    font-size: 11pt;
+    text-align: justify;
+}
+
+
+.tab-bar {
+    margin-bottom: 40px;
+    float: left;
+}
+
+.tab {
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    padding: 0 20px;
+    color: #aaa;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    -ms-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+}
+
+.tab:hover {
+    color: #333;
+    cursor: pointer;
+}
+
+.tab.active_stage {
+    color: #000;
+    border-bottom: 3px solid;
+}
+
+#worksSummary {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    border-spacing: 0;
+    border: 2px solid #C63655;
+}
+
+#worksSummary th {
+    background-color: #C63655;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 7px;
+    border: 2px solid #C63655;
+}
+
+#worksSummary td {
+    border: 2px solid #C63655;
+    padding: 5px 7px;
+}
+
+#worksSummary td.work-date {
+    text-align: left;
+    width: 10%;
+}
+
+#worksSummary td.work-description {
+    text-align: left;
+    width: 60%;
+}
+
+#worksSummary td.work-hours {
+    text-align: center;
+    width: 10%;
+}
+#worksSummary td.work-people {
+    text-align: center;
+    width: 10%;
+}
+#worksSummary td.work-actions {
+    text-align: center;
+    width: 10%;
+}
+
+#worksSummary .work-actions span {
+    width: 100%;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    white-space: nowrap;
+}
+
+#worksSummary .work-actions button {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: inline-block;
+    border: none;
+    position: static;
+    clear: none;
+    vertical-align: top;
+}
+
+#worksSummary .work-actions button + button {
+    margin-left: 7px;
+}
+
+
 
 
