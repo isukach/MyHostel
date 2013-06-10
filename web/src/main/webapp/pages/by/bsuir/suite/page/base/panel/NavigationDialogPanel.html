@@ -1,0 +1,156 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+<div id="dialog-background">
+<div id="navigation_dialog">
+<table id="navigation_stages">
+    <tbody>
+    <tr>
+        <td id="stage-hostel" class="active_stage"><wicket:message key="label.hostel"/></td>
+        <td id="stage-floor"><wicket:message key="label.floor"/></td>
+        <td id="stage-person"><wicket:message key="label.person"/></td>
+    </tr>
+    </tbody>
+</table>
+<div id="navigation_slides_box">
+<table id="navigation_slides" wicket:id="navigationSlides">
+<tbody>
+<tr>
+<td id="slide-hostel">
+    <div class="hostel_button" wicket:id="hostelContainer">
+        <button wicket:id="hostelButton">
+            <wicket:message key="hostel.button.label"/>
+            <br>
+            <span class="hostel_number" wicket:id="hostelNumber">1</span>
+        </button>
+    </div>
+</td>
+<td id="slide-floor">
+    <div wicket:id="floorContainer" id="floor-container">
+        <div wicket:id="floorRepeater" class="floor_repeater">
+            <button value="1" wicket:id="floorButton">
+                <div class="number_of_floor" wicket:id="floorNumber">1</div>
+                <div class="fill_bar">
+                    <div class="full_value" wicket:id="populationBar"></div>
+                </div>
+                <div class="total" wicket:id="populationLabel">46/92</div>
+            </button>
+        </div>
+        <script type="text/javascript">
+            var floorButtons = document.querySelectorAll(".floor_repeater");
+            for (var j = 0; j < floorButtons.length; j++) {
+                floorButtons[j].onclick = function() {
+                    setActiveStage(3);
+                }
+            }
+        </script>
+    </div>
+</td>
+<td id="slide-person">
+    <div id="room_cards" wicket:id="roomContainer">
+        <div class="room_card" wicket:id="roomRepeater">
+            <div class="number_of_room" wicket:id="roomNumber">601</div>
+            <div wicket:id="personButtonContainer">
+                <button wicket:id="personButton">
+                    <span wicket:id="personName">Skakun A.S.</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<button id="back_button">Back</button>
+<button wicket:id="cancelButton">Cancel</button>
+</div>
+</div>
+<script type="text/javascript">
+    highLightCurrentStage();
+    showBackButton();
+    if(document.getElementById("hostel_navigator")) {
+        var hostelNavigator = document.getElementById("hostel_navigator");
+        var hostelButtons = document.querySelectorAll(".hostel_button");
+        for (var i = 0; i < hostelButtons.length; i++) {
+            hostelButtons[i].onclick = function(evt) {
+                setActiveStage(2);
+            }
+        }
+    }
+    function setActiveStage(stage) {
+        scrollToCurrentSlide(stage);
+        highLightCurrentStage();
+        showBackButton();
+    }
+
+    function getScrollValue(stage) {
+        switch (stage){
+            case 1:
+                return "0"; break;
+            case 2:
+                return "-100%"; break;
+            case 3:
+                return "-200%"; break;
+            default:
+                return "0"; break;
+        }
+    }
+
+    function getStageName(stage) {
+        switch (stage){
+            case 1:
+                return "stage-hostel"; break;
+            case 2:
+                return "stage-floor"; break;
+            case 3:
+                return "stage-person"; break;
+            default:
+                return "stage-hostel"; break;
+        }
+    }
+
+    function highLightCurrentStage() {
+        var currentStage = document.getElementById(getStageName(getCurrentStage()));
+        var stagesTable = document.getElementById("navigation_stages");
+        for(var i = 0; i < stagesTable.children[0].children[0].children.length; i++) {
+            stagesTable.children[0].children[0].children[i].className = "";
+        }
+        currentStage.className = "active_stage";
+    }
+
+    function scrollToCurrentSlide(stage) {
+        var slidesTable = document.getElementById("navigation_slides");
+        slidesTable.style.left = getScrollValue(stage);
+    }
+
+    function showBackButton() {
+        var backButton = document.getElementById("back_button");
+        var stage = getCurrentStage();
+        if (stage != 1) {
+            backButton.style.display = "inline";
+            backButton.onclick = function(event) {
+                event.preventDefault();
+                setActiveStage(stage - 1);
+            }
+        }
+        else {
+            backButton.style.display = "none";
+        }
+    }
+
+    function getCurrentStage() {
+        var slidesTable = document.getElementById("navigation_slides");
+        var leftPosition = slidesTable.style.left;
+        if (leftPosition == "-200%") {
+            return 3;
+        } else if (leftPosition == "-100%") {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+</script>
+</wicket:panel>
+</html>

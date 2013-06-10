@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<meta charset="utf-8">
+<wicket:extend>
+    <div id="content">
+        <form wicket:id=form action="" method="post" id="form">
+            <div class="grid-column left-column">
+                <button wicket:id=addNewArticleButton id="addNewArticleButton" class="button"><span>+</span>
+                    <wicket:message key="newsPage.button.addNew"/>
+                </button>
+                <div wicket:id="newsContainer" class="current-news-container">
+                    <div wicket:id=list class="news-item" >
+                        <div wicket:id=itemButton>
+                            <i wicket:id=newsIndicator class="filter-indicator"></i>
+                            <span wicket:id="newsTimestamp" class="news-timestamp"></span>
+                            <h2 wicket:id="newsCaption" class="news-header"></h2>
+                            <div wicket:id="newsBody" class="news-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-column center-column">
+                <div class="control-group" id="articleTitle" >
+                    <label for="title"><wicket:message key="newsPage.label.title"/> </label>
+                    <input wicket:id=editedItemCaption id="title" type="text" name="title">
+                </div>
+                <div class="control-group" id="articleContent">
+                    <label for="text"><wicket:message key="newsPage.label.text"/></label>
+                    <textarea wicket:id=editedItemText id="text"></textarea>
+                </div>
+            </div>
+
+            <div wicket:id="newsSettingsPanel" class="grid-column right-column"></div>
+        </form>
+
+        <div wicket:id="unsavedDialog"/>
+        <div wicket:id="saveDialog"/>
+        <div wicket:id="removeDialog"/>
+        <div wicket:id="captionErrorDialog"/>
+        <div wicket:id="contentErrorDialog"/>
+    </div>
+</wicket:extend>
+</html>

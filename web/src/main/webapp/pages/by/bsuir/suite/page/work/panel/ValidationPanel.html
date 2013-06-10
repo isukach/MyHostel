@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+    <wicket:panel>
+        <div id="dialog-background">
+            <div id="dialog-container">
+                <h1 wicket:id="header"></h1>
+                <p>
+                    <div id="errorMessages" wicket:id="feedback"></div>
+                </p>
+                <form wicket:id="validateForm">
+                    <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" style="float: right;"/>
+                </form>
+            </div>
+        </div>
+    </wicket:panel>
+</html>

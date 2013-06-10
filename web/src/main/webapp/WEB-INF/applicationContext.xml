@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>WEB-INF/jdbc.properties</value>
+                <value>WEB-INF/lan-jdbc.properties</value>
+                <value>WEB-INF/hostel.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="datasource.xml"/>
+    <import resource="lanDatasource.xml"/>
+    <import resource="transactions.xml"/>
+    <import resource="spring.xml"/>
+    <import resource="security.xml"/>
+    <import resource="quartz.xml"/>
+    <import resource="hostelInit.xml"/>
+    <import resource="calendarInit.xml"/>
+    <import resource="personInit.xml"/>
+    <import resource="rolesInit.xml"/>
+    <import resource="superuserInit.xml"/>
+
+</beans>

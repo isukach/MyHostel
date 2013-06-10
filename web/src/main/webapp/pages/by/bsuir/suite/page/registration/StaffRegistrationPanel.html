@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div wicket:id="feedbackPanel"></div>
+    <form wicket:id="adminForm">
+        <div class="grid-column left-column" id="registrationFields">
+            <h2><wicket:message key="registration.personalInfo"/></h2>
+            <label for="firstName" wicket:id="firstNameLabel"></label>
+            <input id="firstName" type="text" wicket:id="firstName">
+            <label for="lastName" wicket:id="lastNameLabel"></label>
+            <input id="lastName" type="text" wicket:id="lastName">
+            <label for="middleName" wicket:id="middleNameLabel"></label>
+            <input id="middleName" type="text" wicket:id="middleName">
+            <label for="username" wicket:id="usernameLabel"></label>
+            <input id="username" type="text" wicket:id="username">
+            <label for="password" wicket:id="passwordLabel"></label>
+            <input id="password" type="password" wicket:id="password">
+            <label for="passwordConfirm" wicket:id="passwordConfirmLabel"></label>
+            <input id="passwordConfirm" type="password" wicket:id="passwordConfirm">
+            <input type="submit" wicket:id="submitAdminForm" wicket:message="value:label.submitButton">
+        </div>
+        <div class="grid-column right-column" id="registrationRoleChecker">
+            <div wicket:id="rolePanel"></div>
+        </div>
+    </form>
+    <div wicket:id="registrationSuccessWindow"></div>
+</wicket:panel>
+</html>

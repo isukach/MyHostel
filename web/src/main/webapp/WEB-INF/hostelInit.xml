@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="fourPeopleBlockRoom1" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="01"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom2" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="02"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom3" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="03"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom4" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="04"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom5" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="05"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom6" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="06"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom7" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="07"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom8" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="08"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom9" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="09"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom10" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="10"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom11" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="11"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom12" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="12"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom13" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="13"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom14" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="14"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom15" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="15"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom16" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="16"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom17" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="17"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom18" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="18"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom19" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="19"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom21" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="21"/>
+    </bean>
+
+    <bean id="fourPeopleBlockRoom23" class="by.bsuir.suite.initializer.property.RoomProperty">
+        <property name="maxPopulation" value="4"/>
+        <property name="number" value="23"/>
+    </bean>
+
+    <bean id="usualFloorRooms" class="by.bsuir.suite.initializer.property.RoomCollection">
+        <property name="roomCollection">
+            <list>
+                <ref bean="fourPeopleBlockRoom1"/>
+                <ref bean="fourPeopleBlockRoom2"/>
+                <ref bean="fourPeopleBlockRoom3"/>
+                <ref bean="fourPeopleBlockRoom4"/>
+                <ref bean="fourPeopleBlockRoom5"/>
+                <ref bean="fourPeopleBlockRoom6"/>
+                <ref bean="fourPeopleBlockRoom7"/>
+                <ref bean="fourPeopleBlockRoom8"/>
+                <ref bean="fourPeopleBlockRoom9"/>
+                <ref bean="fourPeopleBlockRoom10"/>
+                <ref bean="fourPeopleBlockRoom11"/>
+                <ref bean="fourPeopleBlockRoom12"/>
+                <ref bean="fourPeopleBlockRoom13"/>
+                <ref bean="fourPeopleBlockRoom14"/>
+                <ref bean="fourPeopleBlockRoom15"/>
+                <ref bean="fourPeopleBlockRoom16"/>
+                <ref bean="fourPeopleBlockRoom17"/>
+                <ref bean="fourPeopleBlockRoom18"/>
+                <ref bean="fourPeopleBlockRoom19"/>
+                <ref bean="fourPeopleBlockRoom21"/>
+                <ref bean="fourPeopleBlockRoom23"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="floor2" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="2"/>
+    </bean>
+
+    <bean id="floor3" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="3"/>
+    </bean>
+
+    <bean id="floor4" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="4"/>
+    </bean>
+
+    <bean id="floor5" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="5"/>
+    </bean>
+
+    <bean id="floor6" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="6"/>
+    </bean>
+
+    <bean id="floor7" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="7"/>
+    </bean>
+
+    <bean id="floor8" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="8"/>
+    </bean>
+
+    <bean id="floor9" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="9"/>
+    </bean>
+
+    <bean id="floor10" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="10"/>
+    </bean>
+
+    <bean id="floor11" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="11"/>
+    </bean>
+
+    <bean id="floor12" class="by.bsuir.suite.initializer.property.FloorProperty">
+        <property name="rooms" ref="usualFloorRooms"/>
+        <property name="name" value="12"/>
+    </bean>
+
+    <bean id="hostel1" class="by.bsuir.suite.initializer.property.HostelProperty">
+        <property name="address" value="Kolosa 28"/>
+        <property name="number" value="1"/>
+        <property name="blockType" value="true"/>
+        <property name="rank" value="2"/>
+        <property name="floors">
+            <list>
+                <ref bean="floor2"/>
+                <ref bean="floor3"/>
+                <ref bean="floor4"/>
+                <ref bean="floor5"/>
+                <ref bean="floor6"/>
+                <ref bean="floor7"/>
+                <ref bean="floor8"/>
+                <ref bean="floor9"/>
+                <ref bean="floor10"/>
+                <ref bean="floor11"/>
+                <ref bean="floor12"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="hostelInitializer" class="by.bsuir.suite.initializer.HostelInitializer" init-method="init">
+        <property name="hostels">
+            <list>
+                <ref bean="hostel1"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

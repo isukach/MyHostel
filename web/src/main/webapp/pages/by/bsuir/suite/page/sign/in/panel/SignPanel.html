@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <form id="login_form" method="post" wicket:id="signInForm">
+        <input type="text" placeholder="Login" wicket:id="username" />
+        <input type="password" placeholder="Password" wicket:id="password"/>
+        <input type="submit" wicket:message="value:signPanel.login.label"/>
+    </form>
+    <span wicket:id="feedback" class="error_message"></span>
+</wicket:panel>
+</html>

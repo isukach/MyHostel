@@ -1,0 +1,81 @@
+#search-panel {
+    position: absolute;
+    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9999;
+}
+
+#search-field {
+    width: 35%;
+    margin: 0 auto;
+    height: 100px;
+    line-height: 100px;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#search-field > button {
+    float: right;
+    margin-right: 7px;
+    line-height: 20px;
+}
+
+#search-field > input[type="text"] {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -25px 0 0;
+    top: 50%;
+    height: 50px;
+    position: relative;
+    line-height: 30px;
+    font-size: 18px;
+    padding: 10px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#search-results {
+    width: 35%;
+    margin: 0 auto;
+    border-top: 100px solid transparent;
+    box-sizing: border-box;
+    position: absolute;
+    left: 32.5%;
+    top: 0;
+    z-index: 1;
+    overflow: auto;
+}
+
+#search-results table {
+    width: 100%;
+    border-spacing: 0;
+    padding: 0 20px 15px;
+}
+
+#search-results table td {
+    background: #fff;
+    border-bottom: 5px solid transparent;
+    padding: 0.3cm;
+}
+
+#search-results table td.room {
+    width: 80px;
+    text-align: right;
+}
+
+#search-results table td a {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#search-results table td a:hover {
+    color: #333;
+    text-decoration: underline;
+}

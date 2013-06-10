@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <h2 wicket:id="panel_label" class="h2" style="display:inline;"></h2>
+    <button  wicket:id="add" id="add-reprimand"><wicket:message key="label.button.add"></wicket:message></button>
+
+    <table wicket:id="parentContainer" >
+        <thead>
+            <tr>
+                <th wicket:id=type_head_label>
+                    <label for="categories" style="width:50%"><wicket:message key="label.category"/> </label>
+                </th>
+                <th>
+                    <label for="number" style="width:50%"><wicket:message key="label.number"/></label>
+                </th>
+                <th>
+                    <label for="date" style="width:50%"><wicket:message key="label.date"/></label>
+                </th>
+                <th>
+                    <label for="comment" style="width:50%"><wicket:message key="label.comment"/></label>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr wicket:id="widgetContainer">
+                <td wicket:id=type_container>
+                    <select wicket:id="category" id="categories" name="categories"/>
+                </td>
+                <td>
+                    <input wicket:id="orderNumber" type="text" id="number"/>
+                </td>
+                <td>
+                    <input wicket:id="date" id="date" type="text"/>
+                </td>
+                <td>
+                    <input type="text" wicket:id="comment" id="comment"/>
+                </td>
+                <td>
+                    <input wicket:id="save" type="button" wicket:message="value:label.button.save"/>
+                </td>
+            </tr>
+
+            <tr wicket:id="list">
+                <td wicket:id=type_container_label>
+                    <label wicket:id="category_label"/>
+                </td>
+                <td>
+                    <label wicket:id="orderNumber_label"/>
+                </td>
+                <td>
+                    <label wicket:id="date_label"/>
+                </td>
+                <td>
+                    <label wicket:id="comment_label"/>
+                </td>
+                <td>
+                    <input wicket:id="remove" type="button" wicket:message="value:label.button.remove"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</wicket:panel>
+</body>
+</html>

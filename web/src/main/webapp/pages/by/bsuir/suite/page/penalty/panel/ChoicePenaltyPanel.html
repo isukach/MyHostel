@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="dialog-background">
+        <div id="dialog-container">
+            <h1>
+                <wicket:message key="dialog.header"></wicket:message>
+            </h1>
+            <br>
+            <div class="dialog-content">
+                <form wicket:id="choicePenaltyForm">
+                    <label for="dutiesNumber">
+                        <input type="checkbox" wicket:id="dutiesCheckbox"/>
+                        <wicket:message key="dialog.duties.header"></wicket:message>
+                    </label>
+                    <input type="text" id="dutiesNumber" wicket:id="dutiesNumber"/>
+                    <label for="worksNumber">
+                        <input type="checkbox" wicket:id="worksCheckbox"/>
+                        <wicket:message key="dialog.works.header"></wicket:message>
+                    </label>
+                    <input type="text" id="worksNumber" wicket:id="worksNumber"/>
+                </form>
+            </div>
+            <div class="clear-fix"></div>
+            <button wicket:id="cancelButton">
+                <wicket:message key="dialog.button.cancel"></wicket:message>
+            </button>
+            <button wicket:id="okButton">
+                <wicket:message key="dialog.button.ok"></wicket:message>
+            </button>
+            <div wicket:id="feedbackPanel"></div>
+        </div>
+    </div>
+</wicket:panel>
+</html>

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div wicket:id="feedback"></div>
+
+    <form wicket:id="roomerForm">
+        <div class="grid-column left-column" id="registrationFields">
+            <h2><wicket:message key="registration.personalInfo"/></h2>
+            <label for="lastName" wicket:id="lastNameLabel"></label>
+            <input id="lastName" type="text" wicket:id="lastName">
+            <label for="firstName" wicket:id="firstNameLabel"></label>
+            <input id="firstName" type="text" wicket:id="firstName">
+            <label for="middleName" wicket:id="middleNameLabel"></label>
+            <input id="middleName" type="text" wicket:id="middleName">
+            <label for="groupNumber" wicket:id="groupNumberLabel"></label>
+            <input id="groupNumber" type="text" wicket:id="groupNumber">
+            <label for="phoneNumber" wicket:id="phoneNumberLabel"></label>
+            <input id="phoneNumber" wicket:id="phoneNumber" type="text">
+            <label for="city" wicket:id="cityLabel"></label>
+            <input id="city" wicket:id="city" type="text">
+            <div wicket:id="facultyPanel"></div>
+            <input type="submit" wicket:id="submitRoomerForm" wicket:message="value:label.submitButton">
+        </div>
+        <div class="grid-column right-column" id="registrationRoleChecker">
+            <div wicket:id="rolePanel"></div>
+        </div>
+    </form>
+</wicket:panel>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+    <div id="hostel_navigator">
+        <button id="hostel_navigator_launcher" wicket:id="navigationButton">
+            <wicket:message key="choose.button.label"/>
+        </button>
+        <span id="navigator_label" wicket:id="notSelectedLabel">
+            <wicket:message key="notSelected"/>
+        </span>
+        <span class="navigator_string" id="hostel_number" wicket:id="hostelLabel">Hostel</span>
+        <span class="navigator_string" id="floor_number" wicket:id="floorLabel">Floor</span>
+        <span class="navigator_string" id="room_number" wicket:id="personLabel">Room</span>
+    </div>
+    <div id="navigation_dialog" wicket:id="navigationDialog"></div>
+</wicket:panel>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+    <meta charset="utf-8">
+    <title>MyHostel</title>
+    <wicket:link>
+        <link rel="stylesheet" href="styles/style.css"/>
+        <link rel="stylesheet" href="styles/animation.css">
+        <link rel="stylesheet" href="styles/modal.css">
+        <link rel="stylesheet" href="styles/navigation.css">
+        <link rel="stylesheet" href="styles/search.css">
+    </wicket:link>
+    <style>
+        #ieShallNotPass {
+            display: none;
+        }
+    </style>
+    <!--[if lte IE 8]>
+    <style>
+        #ieShallNotPass {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            color: #616161;
+            z-index: 9999999999;
+        }
+        #ieShallNotPass h1 {
+            margin-top: 50px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        #ieShallNotPass img {
+            margin: 0 auto;
+            width: 469px;
+            height: 450px;
+            display: block;
+        }
+    </style>
+    <![endif]-->
+</wicket:head>
+<body>
+<div class="header_bar" wicket:id="menuPanel">Panel</div>
+<wicket:child/>
+<div wicket:id="personSearchPanel"></div>
+<div id="ieShallNotPass">
+    <h1><wicket:message key="ie.notSupported.text"></wicket:message></h1>
+    <img src="images/ie-trollface.png" alt="">
+</div>
+<script src="scripts/visual-effects.js"></script>
+</body>
+</html>

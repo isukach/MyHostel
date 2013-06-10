@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="dialog-background">
+        <div id="dialog-container">
+            <h1><wicket:message key="dialog.header"></wicket:message></h1>
+            <div class="dialog-form">
+                <form wicket:id="evaluationForm">
+                    <div wicket:id="dutyChoices" class="dialog-form-labels"></div>
+                    <textarea wicket:id="comment" rows="6" cols="10"></textarea>
+                    <button wicket:id=cancelButton><wicket:message key="dialog.button.cancel"></wicket:message></button>
+                    <button wicket:id="okButton"><wicket:message key="dialog.button.ok"></wicket:message></button>
+                </form>
+            </div>
+            <div wicket:id="feedback"></div>
+        </div>
+    </div>
+</wicket:panel>
+</html>

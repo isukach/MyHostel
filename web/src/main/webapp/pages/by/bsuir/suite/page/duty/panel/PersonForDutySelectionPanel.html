@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="dialog-background">
+        <div id="navigation_dialog">
+            <div id="navigation_slides_box">
+                <div id="room_cards" wicket:id="roomContainer">
+                    <div class="room_card" wicket:id="roomRepeater">
+                        <div class="number_of_room" wicket:id="roomNumber">601</div>
+                        <div wicket:id="personButtonContainer">
+                            <button wicket:id="personButton">
+                                <span wicket:id="personName">Skakun A.S.</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button wicket:id="cancelButton"><wicket:message key="dialog.button.cancel"></wicket:message></button>
+        </div>
+    </div>
+</wicket:panel>
+</html>

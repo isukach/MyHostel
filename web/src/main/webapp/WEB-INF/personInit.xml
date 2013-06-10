@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="adminRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="admin"/>
+        <property name="description" value="admin"/>
+    </bean>
+
+    <bean id="userRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="user"/>
+        <property name="description" value="user"/>
+    </bean>
+
+    <bean id="floorHeadRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="floorHead"/>
+        <property name="description" value="floorHead"/>
+    </bean>
+    
+    <bean id="commandantRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="commandant"/>
+        <property name="description" value="commandant"/>
+    </bean>
+
+    <bean id="educatorRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="educator"/>
+        <property name="description" value="educator"/>
+    </bean>
+
+    <bean id="superUserRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="superUser"/>
+        <property name="description" value="superUser"/>
+    </bean>
+
+    <bean id="manageressRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="manageress"/>
+        <property name="description" value="manageress"/>
+    </bean>
+
+    <bean id="registratorRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="registrar"/>
+        <property name="description" value="registrar"/>
+    </bean>
+
+    <bean id="youthCenterRole" class="by.bsuir.suite.initializer.property.RoleProperty">
+        <property name="name" value="youthCenter"/>
+        <property name="description" value="youthCenter"/>
+    </bean>
+
+    <bean id="admin" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="about" value="nothing interesting"/>
+        <property name="email" value="ihar.sukach@gmail.com"/>
+        <property name="faculty" value="FITU"/>
+        <property name="firstName" value="Igor"/>
+        <property name="middleName" value="V."/>
+        <property name="lastName" value="Sukach"/>
+        <property name="floor" value="6"/>
+        <property name="room" value="02"/>
+        <property name="hostel" value="1"/>
+        <property name="tel" value="538-28-45"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="admin"/>
+        <property name="universityGroup" value="822401"/>
+        <property name="maxDuties" value="10"/>
+        <property name="roles">
+            <list>
+                <ref bean="adminRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="user" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="about" value="nothing interesting"/>
+        <property name="email" value="alex.skakun@me.com"/>
+        <property name="faculty" value="FITU"/>
+        <property name="firstName" value="Alex"/>
+        <property name="middleName" value="S."/>
+        <property name="lastName" value="Skakun"/>
+        <property name="floor" value="6"/>
+        <property name="room" value="02"/>
+        <property name="hostel" value="1"/>
+        <property name="tel" value="712-69-68"/>
+        <property name="username" value="user"/>
+        <property name="password" value="user"/>
+        <property name="universityGroup" value="921901"/>
+        <property name="maxDuties" value="10"/>
+        <property name="roles">
+            <list>
+                <ref bean="userRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="floorHead" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="about" value="nothing interesting"/>
+        <property name="email" value="email@gmail.com"/>
+        <property name="faculty" value="FITU"/>
+        <property name="firstName" value="Name"/>
+        <property name="middleName" value="Midlename"/>
+        <property name="lastName" value="Starosta"/>
+        <property name="floor" value="6"/>
+        <property name="room" value="02"/>
+        <property name="hostel" value="1"/>
+        <property name="tel" value="123-45-67"/>
+        <property name="username" value="floorhead"/>
+        <property name="password" value="floorhead"/>
+        <property name="universityGroup" value="100500"/>
+        <property name="maxDuties" value="10"/>
+        <property name="roles">
+            <list>
+                <ref bean="floorHeadRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="manageress" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="firstName" value="Alla"/>
+        <property name="middleName" value="Vladimirovna"/>
+        <property name="lastName" value="Manageress"/>
+        <property name="username" value="manageress"/>
+        <property name="password" value="manageress"/>
+        <property name="roles">
+            <list>
+                <ref bean="manageressRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="registrator" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="firstName" value="Maria"/>
+        <property name="lastName" value="Shulz"/>
+        <property name="middleName" value="Aristarhovna"/>
+        <property name="username" value="registrar"/>
+        <property name="password" value="registrar"/>
+        <property name="roles">
+            <list>
+                <ref bean="registratorRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="educator" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="firstName" value="Ludmila"/>
+        <property name="lastName" value="Matushkina"/>
+        <property name="middleName" value="Fridrihovna"/>
+        <property name="username" value="educator"/>
+        <property name="password" value="educator"/>
+        <property name="roles">
+            <list>
+                <ref bean="educatorRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="commandant" class="by.bsuir.suite.initializer.property.PersonProperty">
+        <property name="about" value="nothing interesting"/>
+        <property name="email" value="email@gmail.com"/>
+        <property name="faculty" value="ФИТУ"/>
+        <property name="firstName" value="Дмитрий"/>
+        <property name="middleName" value="Александрович"/>
+        <property name="lastName" value="Шемерей"/>
+        <property name="floor" value="6"/>
+        <property name="room" value="21"/>
+        <property name="hostel" value="1"/>
+        <property name="tel" value="123-45-67"/>
+        <property name="username" value="commandant"/>
+        <property name="password" value="commandant"/>
+        <property name="universityGroup" value="100500"/>
+        <property name="maxDuties" value="10"/>
+        <property name="roles">
+            <list>
+                <ref bean="commandantRole"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="personInitializer" class="by.bsuir.suite.initializer.PersonInitializer" init-method="init">
+        <property name="persons">
+            <list>
+                <ref bean="admin"/>
+                <ref bean="user"/>
+                <ref bean="floorHead"/>
+                <ref bean="manageress"/>
+                <ref bean="commandant"/>
+                <ref bean="educator"/>
+                <ref bean="registrator"/>
+            </list>
+        </property>
+        <property name="initializationEnabled" value="${test.person.init.enabled}"/>
+    </bean>
+
+</beans>

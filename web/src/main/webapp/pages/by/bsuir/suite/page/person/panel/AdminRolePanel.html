@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <h2 id="profile_social_header">
+        <wicket:message key="role"/>
+    </h2>
+    <div id="roles_container" wicket:id="role">
+        <label for="role_educator" class="role_label">
+            <wicket:message key="role.educator"/>
+        </label>
+        <input type="radio" name="roleName" id="role_educator" class="role_radio" wicket:id="educatorLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_manageress" class="role_label">
+            <wicket:message key="role.manageress"/>
+        </label>
+        <input type="radio" name="roleName" id="role_manageress" class="role_radio" wicket:id="manageressLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_registrar" class="role_label">
+            <wicket:message key="role.registrar"/>
+        </label>
+        <input type="radio" name="roleName" id="role_registrar" class="role_radio" wicket:id="registrarLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_youthCenter" class="role_label">
+            <wicket:message key="role.youthCenter"/>
+        </label>
+        <input type="radio" name="roleName" id="role_youthCenter" class="role_radio" wicket:id="youthCenterLabel">
+
+        <div class="checked_indicator"></div>
+    </div>
+
+</wicket:panel>
+</html>

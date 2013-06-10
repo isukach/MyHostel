@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="left_side">
+        <span href="#" id="home_button" class="icon" wicket:id="homeLink"></span>
+
+        <div id="separator" wicket:id="separator">
+            <img wicket:id="separatorImage">
+        </div>
+        <p wicket:id="pageTitle"></p>
+    </div>
+    <div id="right_side">
+        <span id="search_button" class="icon link_in_header">
+            <a href="#search" wicket:id="searchLink"></a>
+            <span class="tooltip-container">
+                <span class="tooltip"><wicket:message key="menu.panel.label.search"></wicket:message></span>
+            </span>
+        </span>
+        <span id="profile_button" class="icon link_in_header" wicket:id="profileLinkContainer">
+            <a href="#search" wicket:id="profileLink"></a>
+            <span class="tooltip-container">
+                <span class="tooltip"><wicket:message key="menu.panel.label.profile"></wicket:message></span>
+            </span>
+        </span>
+        <span id="settings_button" class="icon link_in_header">
+            <a href="#settings" wicket:id="settingsLink"></a>
+            <span class="tooltip-container">
+                <span class="tooltip"><wicket:message key="menu.panel.label.settings"></wicket:message></span>
+            </span>
+        </span>
+        <span id="logout_button" class="icon link_in_header">
+            <a href="#logout" wicket:id="logoutLink"></a>
+            <span class="tooltip-container">
+                <span class="tooltip"><wicket:message key="menu.panel.label.logout"></wicket:message></span>
+            </span>
+        </span>
+
+    </div>
+</wicket:panel>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:extend>
+    <div id="content">
+        <div id="tiles">
+            <a href="#" id="tile_duty" class="tile" wicket:id="dutyLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="dutyLinkLabel">Duty</div>
+            </a>
+            <a href="#" id="tile_seh" class="tile" wicket:id="sehLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="sehLinkLabel">SEH</div>
+            </a>
+            <a id="tile_network" class="tile" wicket:id="lanLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="lanLinkLabel">Network</div>
+            </a>
+            <a id="tile_news" class="tile" wicket:id="newsLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="newsLinkLabel">News</div>
+            </a>
+            <a id="tile_registration" class="tile" wicket:id="registrationLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="registrationLinkLabel">Registration</div>
+            </a>
+            <a id="tile_staff_registration" class="tile" wicket:id="staffRegistrationLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="staffRegistrationLinkLabel">Staff Registration</div>
+            </a>
+            <a id="tile_penalty" class="tile" wicket:id="penaltyLink">
+                <img src="images/square.png" class="square" alt="" onClick="">
+
+                <div class="tile_title" wicket:id="penaltyLinkLabel">Penalty</div>
+            </a>
+        </div>
+        <!--<div wicket:id="personSearchPanel"></div>-->
+        <div id="news">
+            <h1>
+                <wicket:message key="index.news"></wicket:message>
+                <div class="news-categories">
+                    <input wicket:id="filter.network" type="checkbox" checked id="filter-network">
+                    <label for="filter-network">
+                        <wicket:message key="newsPage.category.network"/>
+                    </label>
+                    <input wicket:id="filter.work" type="checkbox" checked id="filter-works"><label for="filter-works">
+                    <wicket:message key="newsPage.category.work"/>
+                </label>
+                    <input wicket:id="filter.duty" type="checkbox" checked id="filter-duty"><label for="filter-duty">
+                    <wicket:message key="newsPage.category.duty"/>
+                </label>
+                    <input wicket:id="filter.events" type="checkbox" checked id="filter-events"><label
+                        for="filter-events">
+                    <wicket:message key="newsPage.category.events"/>
+                </label>
+                    <input wicket:id="filter.questions" type="checkbox" checked id="filter-life"><label
+                        for="filter-life">
+                    <wicket:message key="newsPage.category.questions"/>
+                </label>
+                    <input wicket:id="filter.other" type="checkbox" checked id="filter-other"><label for="filter-other">
+                    <wicket:message key="newsPage.category.other"/>
+                </label>
+                </div>
+            </h1>
+            <div wicket:id=newsContainer id="news_container" onchange="calculateScroll()">
+                <div wicket:id=list class="news_item">
+                    <i wicket:id=newsIndicator class="filter-indicator"></i>
+
+                    <h2>
+                        <span wicket:id="newsCaption"></span>
+                        <span wicket:id="newsDate" class="news-date"></span>
+                    </h2>
+
+                    <p wicket:id=newsBody></p>
+                    <span wicket:id="newsAutor" class="news-author"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</html>

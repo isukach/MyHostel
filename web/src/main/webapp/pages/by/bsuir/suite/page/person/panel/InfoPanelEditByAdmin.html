@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="profile_info_container">
+        <table id="edit_profile_name">
+            <tbody>
+            <tr>
+                <td>
+                    <label for="lastName">
+                        <wicket:message key="info.lastName"/>
+                    </label>
+                </td>
+                <td>
+                    <label for="firstName">
+                        <wicket:message key="info.firstName"/>
+                    </label>
+                </td>
+                <td>
+                    <label for="secondName">
+                        <wicket:message key="info.secondName"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="Afvbkbz" id="lastName" wicket:id="lastName" tabindex="1">
+                </td>
+                <td>
+                    <input type="text" name="firstName" id="firstName" wicket:id="firstName" tabindex="2">
+                </td>
+                <td>
+                    <input type="text" name="secondName" id="secondName" wicket:id="middleName" tabindex="3">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table id="profile_info">
+            <tbody>
+            <div wicket:id="facultyPanel"></div>
+            <tr>
+                <td class="profile_info_label">
+                    <wicket:message key="info.group"/>
+                </td>
+                <td class="profile_info_value">
+                    <input type="text" name="group_number" wicket:id="group" tabindex="4">
+                </td>
+            </tr>
+            <tr>
+                <td class="profile_info_label">
+                    <wicket:message key="info.phoneNumber"/>
+                </td>
+                <td class="profile_info_value">
+                    <input type="text" name="phoneNumber" wicket:id="phoneNumber" tabindex="5">
+                </td>
+            </tr>
+            <tr>
+                <td class="profile_info_label">
+                    <wicket:message key="info.from"/>
+                </td>
+                <td class="profile_info_value">
+                    <input type="text" name="city" wicket:id="from" tabindex="6">
+                </td>
+            </tr>
+            <tr>
+                <td class="profile_info_label">
+                    <wicket:message key="info.facilities"/>
+                </td>
+                <td class="profile_info_value">
+                    <input type="text" name="facilities" wicket:id="facilities" tabindex="7">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="clear-fix"></div>
+</wicket:panel>
+</html>

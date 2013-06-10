@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="addCalendarMonthJob" class="by.bsuir.suite.job.common.AddNextMonthDutiesJob"/>
+
+    <bean id="addCalendarMonthJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="addCalendarMonthJob"/>
+        <property name="targetMethod" value="addNextMonthCalendar"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="addCalendarMonthTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="addCalendarMonthJobDetail"/>
+        <property name="cronExpression" value="0 0 2 * * ?"/>
+    </bean>
+
+    <bean id="completeDutiesJob" class="by.bsuir.suite.job.common.CompleteDutiesJob"/>
+
+    <bean id="completeDutiesJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="completeDutiesJob"/>
+        <property name="targetMethod" value="execute"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="completeDutiesJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="completeDutiesJobDetail"/>
+        <property name="cronExpression" value="0 0 3 * * ?"/>
+    </bean>
+
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="addCalendarMonthTrigger"/>
+                <ref bean="completeDutiesJobTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

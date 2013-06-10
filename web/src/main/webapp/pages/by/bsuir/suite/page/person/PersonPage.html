@@ -1,0 +1,23 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:extend>
+    <div id="content">
+        <form wicket:id="form" id="form">
+            <div class="grid-column left-column">
+                <div wicket:id="avatarPanel" id="profile_photo_container"></div>
+                <div wicket:id="buttonPanel" id="profile_buttons_container"></div>
+            </div>
+            <div class="grid-column center-column">
+                <div wicket:id="infoPanel" style="position: relative; width: 100%; height: 100%;"></div>
+                <div wicket:id="feedback" style="position: absolute; bottom: 0"></div>
+            </div>
+            <div class="grid-column right-column">
+                <div wicket:id="rolePanel"></div>
+                <div wicket:id="statPanel"></div>
+                <div wicket:id="linksPanel"></div>
+                <div wicket:id="navigationPanel"></div>
+            </div>
+        </form>
+        <div wicket:id="modal"></div>
+    </div>
+</wicket:extend>
+</html>

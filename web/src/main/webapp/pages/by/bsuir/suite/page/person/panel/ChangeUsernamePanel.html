@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="dialog-background">
+        <div id="dialog-container">
+            <h1><wicket:message key="dialog.header"></wicket:message></h1>
+            <br>
+            <div class="dialog-content">
+                <form wicket:id="changeUsernameForm" class="change-password-form">
+                    <label for="oldUsername" wicket:id="oldUsernameLabel"></label>
+                    <input type="text" id="oldUsername" wicket:id="oldUsername">
+                    <label for="newUsername" wicket:id="newUsernameLabel"></label>
+                    <input type="text" id="newUsername" wicket:id="newUsername">
+                    <input type="submit" wicket:id="submitButton" wicket:message="value:label.changePasswordSubmit">
+                    <input type="button" wicket:id="cancelButton"  wicket:message="value:dialog.button.cancel">
+                </form>
+                <div class="clear-fix"></div>
+            </div>
+            <div wicket:id="changeUsernameFeedback"></div>
+        </div>
+    </div>
+</wicket:panel>
+</html>

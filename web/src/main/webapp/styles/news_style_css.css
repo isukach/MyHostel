@@ -1,0 +1,137 @@
+.add_new_button
+{
+    font-weight: bold;
+    font-size: 20pt;
+    color: #616161;
+    background: transparent;
+    border: 0;
+}
+
+.add_new_button span
+{
+    font-size: 30pt;
+    position: relative;
+    top: 3pt;
+    margin-right: 40px;
+}
+
+.current_news_container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 470px;
+}
+
+.add_news {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.existing_news {
+    width: 27%;
+    float: left;
+    min-width: 280px;
+    text-align: center;
+}
+
+.news_item {
+    height: 80px;
+    text-align: left;
+    display: block;
+    padding: 20px;
+}
+
+.news_header {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #3d3d3d;
+    display: inline;
+}
+
+.news_timestamp {
+    float: right;
+    font-size: 12pt;
+    color: #616161;
+    position: relative;
+    top: 7px;
+}
+
+.news_body {
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+    font-size: 10pt;
+}
+
+.content {
+    padding: 50px 40px 40px 50px;
+    min-width: 1200px;
+}
+
+fieldset
+{
+    border: 2px solid #616161;
+    margin-bottom: 15px;
+}
+
+fieldset ul
+{
+    list-style: none;
+    padding: 8px;
+}
+
+fieldset input
+{
+    margin-bottom: 7px;
+}
+
+.check_list {
+    float: left;
+}
+
+.left_form, .right_form
+{
+    float: left;
+}
+
+.left_form label, .right_form label
+{
+    display: block;
+    color: #616161;
+}
+
+.left_form textarea
+{
+    width: 100%;
+    height: 390px;
+    border: 2px solid #616161;
+}
+
+.left_form
+{
+    min-width: 470px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.left_form input
+{
+    width: 100%;
+    padding: 5px 0;
+}
+
+.add_news select, .add_news textarea, .add_news input[type="text"], .add_news fieldset
+{
+    margin: 0 0 20px 0;
+}
+
+.right_form select
+{
+    width: 100%;
+}
+
+.right_form .btn {
+    width: 100%;
+    margin: 20px 0;
+}
+

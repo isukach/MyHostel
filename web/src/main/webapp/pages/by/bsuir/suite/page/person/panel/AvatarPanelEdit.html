@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+    <div id="profile_photo_container">
+        <img src="images/square.png" class="square" alt="">
+
+        <div id="profile_photo">
+            <wicket:link>
+                <img src="" wicket:id="avatar" alt="Photo">
+            </wicket:link>
+        </div>
+        <div id="change_avatar">
+            <wicket:message key="upload"/>
+            <input type="file" wicket:id="fileUpload">
+        </div>
+    </div>
+
+</wicket:panel>
+</html>

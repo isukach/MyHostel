@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <br/>
+    <table cellpadding="0" cellspasing="0" wicket:id="table">[table]</table><br/>
+    <form wicket:id="addRoleForm">
+        <table class="form_table">
+            <tr>
+                <td>
+                    <label wicket:id="name-label">12</label>
+                </td>
+                <td>
+                    <input wicket:id="name" name="name" id="name" type="text"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label wicket:id="description-label">13</label>
+                </td>
+                <td>
+                    <textarea rows="4" cols="16" wicket:id="description" name="description" id="description"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <input type="submit" wicket:id="ajax-button"/>
+                </td>
+            </tr>
+         </table>
+    </form><br/>
+    <span wicket:id="feedback"/>
+</wicket:panel>
+</html>

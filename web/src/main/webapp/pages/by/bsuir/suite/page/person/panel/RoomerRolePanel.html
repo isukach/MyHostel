@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+    <h2 id="profile_social_header">
+        <wicket:message key="role"/>
+    </h2>
+    <div id="roles_container" wicket:id="role">
+        <label for="role_user" class="role_label">
+            <wicket:message key="role.user"/>
+        </label>
+        <input type="radio" name="roleName" id="role_user" value="user" class="role_radio" wicket:id="userLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_admin" class="role_label">
+            <wicket:message key="role.admin"/>
+        </label>
+        <input type="radio" name="roleName" id="role_admin" value="admin" class="role_radio" wicket:id="adminLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_floorhead" class="role_label">
+            <wicket:message key="role.floorhead"/>
+        </label>
+        <input type="radio" name="roleName" id="role_floorhead" value="floorhead" class="role_radio"
+               wicket:id="floorHeadLabel">
+
+        <div class="checked_indicator"></div>
+        <label for="role_commandant" class="role_label">
+            <wicket:message key="role.commandant"/>
+        </label>
+        <input type="radio" name="roleName" id="role_commandant" value="commandant" class="role_radio"
+               wicket:id="commandantLabel">
+
+        <div class="checked_indicator"></div>
+    </div>
+
+</wicket:panel>
+</html>

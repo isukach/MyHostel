@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:wicket="http://wicket.apache.org/">
+
+    <wicket:panel>
+        <div id="bar_container">
+            <span wicket:id="userHoursLabel"></span>
+            <div id="progress_bar">
+                <div id="progress_line" wicket:id="progressLine"></div>
+            </div>
+
+            <div id="works_list_container">
+                <div wicket:id="rows"  id="works_list">
+                        <div wicket:id="cols" class="work_item_container">
+                            <div wicket:id="container" class="work_item">
+                                <span wicket:id=date class="work_item_date"/>
+                                <br>
+                                <span wicket:id="hours" class="work_item_value"/>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div wicket:id="description"></div>
+    </wicket:panel>
+
+</html>
+

@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="left_column">
+        <p class="base_paragraph">
+            <span wicket:id="todayLabel"></span>
+            <br/>
+            <span id="today" class="date" wicket:id="todayDate"></span>
+        </p>
+
+        <form wicket:id="form">
+            <input wicket:id="exportButton" type="submit" wicket:message="value:duty.export.button.label"/>
+            <input wicket:id="enableMonthButton" type="submit" wicket:message="value:duty.enable.month.button.label"/>
+            <input wicket:id="disableMonthButton" type="submit" wicket:message="value:duty.disable.month.button.label"/>
+        </form>
+        <div id="user_duty_list" class="base_paragraph" wicket:id="myDutiesPanel"></div>
+    </div>
+    <div id="right_column">
+        <div id="months_picker">
+            <p class="current_month" wicket:id="currentMonth"></p>
+
+            <div id="months_selector">
+                <button id="month_up" wicket:id="nextMonth"></button>
+                <button id="month_down" wicket:id="previousMonth"></button>
+            </div>
+        </div>
+        <table id="calendar" wicket:id="calendarContainer">
+            <thead>
+            <tr>
+                <th wicket:id="monday"></th>
+                <th wicket:id="tuesday"></th>
+                <th wicket:id="wednesday"></th>
+                <th wicket:id="thursday"></th>
+                <th wicket:id="friday"></th>
+                <th wicket:id="saturday"></th>
+                <th wicket:id="sunday"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr wicket:id="rows">
+                <td wicket:id="cols">
+                    <div class="day">
+                        <span wicket:id="day"></span>
+                        <a href="#" wicket:id="firstShiftLink">
+                            <span wicket:id="firstShiftLabel"></span>
+                        </a>
+                        <button wicket:id="firstShiftLinkDeleteButton"></button>
+                        <a href="#" wicket:id="secondShiftLink">
+                            <span wicket:id="secondShiftLabel"></span>
+                        </a>
+                        <button wicket:id="secondShiftLinkDeleteButton"></button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div wicket:id="modalMonthExceeded"></div>
+    <div wicket:id="modalPersonExceeded"></div>
+    <div wicket:id="dutyLocked"></div>
+    <div wicket:id="dutyConfirm"></div>
+    <div wicket:id="dutyEvaluate"></div>
+    <div wicket:id="dutyStatusDialog"></div>
+    <div wicket:id="personSelection"></div>
+    <div wicket:id="dutyEvaluationEarly"></div>
+</wicket:panel>
+</html>

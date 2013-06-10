@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+    <div id="dialog-background">
+        <div id="dialog-container">
+            <h1><wicket:message key="dialog.header"></wicket:message></h1>
+            <br>
+            <div class="dialog-content" align="left">
+                <span wicket:id="person"></span> <br/>
+                <span wicket:id="room"></span> <br/>
+                <span wicket:id="duty"></span> <br/>
+                <span wicket:id="work"></span>
+            </div>
+            <button wicket:id="cancelButton"><wicket:message key="dialog.button.cancel"></wicket:message></button>
+            <button wicket:id="okButton"><wicket:message key="dialog.button.ok"></wicket:message></button>
+        </div>
+    </div>
+</wicket:panel>
+</html>

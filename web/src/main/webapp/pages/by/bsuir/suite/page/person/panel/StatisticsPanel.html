@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<wicket:panel>
+
+    <h2 id="profile_stat_header">
+        <wicket:message key="stat"/>
+    </h2>
+    <div class="statistics_item">
+        <span class="statistics_label"><wicket:message key="duties"/>: <span wicket:id="dutiesPc"/></span><br/>
+        <span class="statistics_label" wicket:id="extraDutiesLabel"></span>: <span wicket:id="extraDutiesNumber"
+                                                                                     class="statistics_label"></span>
+        <div id="statistics_duties_bar" class="statistics_bar">
+            <div id="statistics_duties_bar_fill" class="statistics_bar_fill" wicket:id="dutiesBar">
+            </div>
+        </div>
+    </div>
+    <div class="statistics_item">
+        <span class="statistics_label"><wicket:message key="works"/>: <span wicket:id="worksPc"/></span><br/>
+        <span class="statistics_label" wicket:id="extraHoursLabel"></span>: <span wicket:id="extraHoursNumber"
+                                                                                   class="statistics_label"></span>
+        <div id="statistics_works_bar" class="statistics_bar">
+            <div id="statistics_works_bar_fill" class="statistics_bar_fill" wicket:id="worksBar">
+            </div>
+        </div>
+    </div>
+    <div class="statistics_item">
+        <span class="statistics_label"><wicket:message key="lan"/>: <span wicket:id="monthCount"/>/12</span>
+
+        <div id="statistics_network_bar">
+            <div wicket:id="september" title="September"></div>
+            <div wicket:id="october" title="October"></div>
+            <div wicket:id="november" title="November"></div>
+            <div wicket:id="december" title="December"></div>
+            <div wicket:id="january" title="January"></div>
+            <div wicket:id="february" title="February"></div>
+            <div wicket:id="march" title="March"></div>
+            <div wicket:id="april" title="April"></div>
+            <div wicket:id="may" title="May"></div>
+            <div wicket:id="june" title="June"></div>
+            <div wicket:id="july" title="July"></div>
+            <div wicket:id="august" title="August"></div>
+        </div>
+    </div>
+
+</wicket:panel>
+</html>
