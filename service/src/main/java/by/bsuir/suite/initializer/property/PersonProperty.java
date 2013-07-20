@@ -1,5 +1,7 @@
 package by.bsuir.suite.initializer.property;
 
+import by.bsuir.suite.domain.person.ResidenceStatus;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ public class PersonProperty {
     private String about;
     private String email;
     private String tel;
+    private ResidenceStatus residenceStatus;
     private int maxDuties;
 
     private String username;
@@ -143,5 +146,13 @@ public class PersonProperty {
 
     public void setMaxDuties(int maxDuties) {
         this.maxDuties = maxDuties;
+    }
+
+    public ResidenceStatus getResidenceStatus() {
+        return residenceStatus;
+    }
+
+    public void setResidenceStatus(ResidenceStatus residenceStatus) {
+        this.residenceStatus = residenceStatus;
     }
 }

@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `hostel`.`person` (
   `lastName` VARCHAR(30) NOT NULL ,
   `middleName` VARCHAR(30) NULL ,
   `faculty` VARCHAR(45) NULL ,
+  `residence_status` VARCHAR(45) NOT NULL ,
   `univ_group` VARCHAR(6) NULL ,
   `about` TEXT NULL ,
   `facilities` TEXT NULL ,

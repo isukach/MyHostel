@@ -6,6 +6,7 @@ import by.bsuir.suite.dao.person.RoomDao;
 import by.bsuir.suite.domain.Role;
 import by.bsuir.suite.domain.person.Faculty;
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import by.bsuir.suite.domain.person.Room;
 import by.bsuir.suite.dto.person.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,18 @@ public class PersonDtoAssembler implements Assembler<PersonDto, Person> {
         Set<Role> roles = new HashSet<Role>();
         roles.add(role);
         person.getUser().setRoles(roles);
-        
-        Integer hostelNumber = dto.getHostel().getNumber();
-        String floorNumber = dto.getFloor().getNumber();
-        String roomNumber = dto.getRoom().getRoomNumber();
-        Room room = roomDao.getByHostelFloorAndRoomNumbers(hostelNumber, floorNumber, roomNumber);
+
+        Room room = null;
+        if (dto.getRoom() != null) {
+            Integer hostelNumber = dto.getHostel().getNumber();
+            String floorNumber = dto.getFloor().getNumber();
+            String roomNumber = dto.getRoom().getRoomNumber();
+            room = roomDao.getByHostelFloorAndRoomNumbers(hostelNumber, floorNumber, roomNumber);
+            person.setResidenceStatus(ResidenceStatus.SETTLED);
+        } else {
+            person.setResidenceStatus(ResidenceStatus.EVICTED);
+        }
+
         person.setRoom(room);
         return person;
     }

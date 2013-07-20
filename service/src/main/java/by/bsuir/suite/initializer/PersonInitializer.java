@@ -69,6 +69,8 @@ public class PersonInitializer {
                     link.setPerson(person);
                     person.setLink(link);
 
+                    person.setResidenceStatus(personProperty.getResidenceStatus());
+
                     if (personProperty.getHostel() != 0 && personProperty.getRoom()
                             != null && personProperty.getFloor() != null) {
                         Room room = roomDao.getByHostelFloorAndRoomNumbers(

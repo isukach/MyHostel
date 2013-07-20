@@ -69,6 +69,7 @@
                 <ref bean="adminRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="SETTLED"/>
     </bean>
 
     <bean id="user" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -91,6 +92,7 @@
                 <ref bean="userRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="SETTLED"/>
     </bean>
 
     <bean id="floorHead" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -113,6 +115,7 @@
                 <ref bean="floorHeadRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="SETTLED"/>
     </bean>
 
     <bean id="manageress" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -126,6 +129,7 @@
                 <ref bean="manageressRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="ADMINISTRATION"/>
     </bean>
 
     <bean id="registrator" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -139,6 +143,7 @@
                 <ref bean="registratorRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="ADMINISTRATION"/>
     </bean>
 
     <bean id="educator" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -152,6 +157,7 @@
                 <ref bean="educatorRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="ADMINISTRATION"/>
     </bean>
 
     <bean id="commandant" class="by.bsuir.suite.initializer.property.PersonProperty">
@@ -174,6 +180,7 @@
                 <ref bean="commandantRole"/>
             </list>
         </property>
+        <property name="residenceStatus" value="SETTLED"/>
     </bean>
 
     <bean id="personInitializer" class="by.bsuir.suite.initializer.PersonInitializer" init-method="init">

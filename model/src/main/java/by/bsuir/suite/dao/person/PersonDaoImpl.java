@@ -3,6 +3,7 @@ package by.bsuir.suite.dao.person;
 import by.bsuir.suite.constants.PersonSearchConstants;
 import by.bsuir.suite.dao.common.GenericDaoImpl;
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import org.apache.commons.lang.math.NumberUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Conjunction;
@@ -112,7 +113,7 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
 
     private Conjunction createMainQueryForPersonSearch(String search) {
         Conjunction conjunction = conjunction();
-        conjunction.add(isNotNull("person.room"));
+        conjunction.add(not(eq("person.residenceStatus", ResidenceStatus.ADMINISTRATION)));
 
         String[] fio = search.split(" ");
         if (fio.length > 1) {

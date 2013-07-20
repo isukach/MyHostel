@@ -1,5 +1,7 @@
 package by.bsuir.suite.page.person.panel;
 
+import by.bsuir.suite.dto.person.PersonDto;
+import by.bsuir.suite.dto.person.ResidenceStatusDto;
 import by.bsuir.suite.page.base.NonContentWindow;
 import by.bsuir.suite.page.base.panel.ConfirmationPanel;
 import by.bsuir.suite.page.base.panel.HostelPanel;
@@ -14,7 +16,6 @@ import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,6 +24,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  * @author i.sukach
  */
 public class ToAdminButtonPanel extends HostelPanel {
+    private final PersonDto person;
     private String login;
 
     @SpringBean
@@ -30,11 +32,14 @@ public class ToAdminButtonPanel extends HostelPanel {
 
     private ModalWindow resetPasswordConfirmationWindow;
 
-    public ToAdminButtonPanel(String id, String login) {
-        super(id);
-        this.login = login;
+    private ModalWindow evictUserConfirmationWindow;
 
-        add(new AjaxButton("admin", new ResourceModel("edit")) {
+    public ToAdminButtonPanel(String id, final PersonDto personDto) {
+        super(id);
+        this.person = personDto;
+        this.login = personDto.getUsername();
+
+        add(new AjaxButton("admin") {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 PageParameters params = new PageParameters();
@@ -47,10 +52,56 @@ public class ToAdminButtonPanel extends HostelPanel {
             protected void onError(AjaxRequestTarget target, Form<?> form) {
             }
         });
+        add(new EvictPersonLink("evict"));
         add(new ResetPasswordLink("resetPassword"));
 
         resetPasswordConfirmationWindow = new NonContentWindow("resetPasswordConfirm");
         add(resetPasswordConfirmationWindow);
+
+        evictUserConfirmationWindow = new NonContentWindow("evictUserConfirm");
+        add(evictUserConfirmationWindow);
+    }
+
+    private class EvictPersonLink extends AjaxFallbackLink {
+
+        public EvictPersonLink(String id) {
+            super(id);
+        }
+
+        @Override
+        public void onClick(AjaxRequestTarget target) {
+            final ConfirmationAnswer answer = new ConfirmationAnswer();
+            ConfirmationPanel panel = new ConfirmationPanel(
+                    evictUserConfirmationWindow.getContentId(), answer, evictUserConfirmationWindow) {
+                @Override
+                public StringResourceModel getHeaderModel() {
+                    return new StringResourceModel("evictUser.header", this, null);
+                }
+
+                @Override
+                public StringResourceModel getContentModel() {
+                    return new StringResourceModel("evictUser.content", this, null);
+                }
+            };
+            evictUserConfirmationWindow.setContent(panel);
+            evictUserConfirmationWindow.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
+                @Override
+                public void onClose(AjaxRequestTarget target) {
+                    if (answer.isPositive()) {
+                        personService.evictPerson(login);
+                    }
+                    PageParameters pageParameters = new PageParameters();
+                    pageParameters.add(PersonPage.USERNAME_KEY, person.getUsername());
+                    setResponsePage(PersonPage.class, pageParameters);
+                }
+            });
+            evictUserConfirmationWindow.show(target);
+        }
+
+        @Override
+        public boolean isVisible() {
+            return person.getResidenceStatus() != ResidenceStatusDto.EVICTED;
+        }
     }
 
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.SUPER_USER})

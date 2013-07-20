@@ -23,6 +23,8 @@ public class PersonDto implements Dto {
     private String facilities;
     private String phoneNumber;
     private String avatarPath;
+    private String username;
+    private ResidenceStatusDto residenceStatus;
 
     private String facebookLink;
     private String twitterLink;
@@ -276,5 +278,21 @@ public class PersonDto implements Dto {
 
     public void setUsernameChanged(boolean usernameChanged) {
         this.usernameChanged = usernameChanged;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public ResidenceStatusDto getResidenceStatus() {
+        return residenceStatus;
+    }
+
+    public void setResidenceStatus(ResidenceStatusDto residenceStatus) {
+        this.residenceStatus = residenceStatus;
     }
 }

@@ -14,8 +14,6 @@ public class InfoPanelView extends HostelPanel {
         super(id);
         
         add(new Label("name", personDto.getFirstName() + " " + personDto.getLastName()));
-        add(new Label("room", personDto.getFloor().getNumber() + personDto.getRoom().getRoomNumber()));
-        add(new Label("hostel", "#" + personDto.getHostel().getNumber()));
         add(new Label("faculty",
                 new StringResourceModel("faculty." + personDto.getFaculty().name().toLowerCase(), this, null)));
         add(new Label("course", personDto.getCourse()));
@@ -25,5 +23,14 @@ public class InfoPanelView extends HostelPanel {
         add(new Label("from", personDto.getFrom()));
         add(new Label("facilities", personDto.getFacilities()));
         add(new Label("about", personDto.getAbout()));
+
+        if (personDto.getRoom()!= null) {
+            add(new Label("room", personDto.getFloor().getNumber() + personDto.getRoom().getRoomNumber()));
+            add(new Label("hostel", "#" + personDto.getHostel().getNumber()));
+        } else {
+            add(new Label("room", new StringResourceModel("user.status.evicted", this, null)));
+            add(new Label("hostel", new StringResourceModel("user.status.evicted", this, null)));
+        }
+
     }
 }

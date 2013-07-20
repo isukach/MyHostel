@@ -7,6 +7,7 @@ import by.bsuir.suite.domain.User;
 import by.bsuir.suite.domain.lan.Lan;
 import by.bsuir.suite.domain.person.Faculty;
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import by.bsuir.suite.domain.work.Work;
 import by.bsuir.suite.password.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class SuperUserInitializer {
             Work work = new Work();
             person.setWork(work);
             work.setPerson(person);
+            person.setResidenceStatus(ResidenceStatus.ADMINISTRATION);
             personDao.update(person);
         }
     }

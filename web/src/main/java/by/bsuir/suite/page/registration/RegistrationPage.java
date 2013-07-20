@@ -58,7 +58,7 @@ public class RegistrationPage extends BasePage {
 
         navigationPanel = new RegistrationNavigationPanel("navigationPanel", true);
 
-        if (pageParameters != null) {
+        if (pageParameters != null && !pageParameters.isEmpty()) {
             retrieveHostelAndFloorFromParameters(pageParameters);
         }
 

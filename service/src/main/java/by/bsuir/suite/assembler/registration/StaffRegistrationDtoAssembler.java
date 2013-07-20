@@ -5,6 +5,7 @@ import by.bsuir.suite.dao.RoleDao;
 import by.bsuir.suite.domain.Role;
 import by.bsuir.suite.domain.User;
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import by.bsuir.suite.dto.registration.StaffRegistrationDto;
 import by.bsuir.suite.password.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class StaffRegistrationDtoAssembler implements Assembler<StaffRegistratio
         person.setFirstName(dto.getFirstName());
         person.setLastName(dto.getLastName());
         person.setMiddleName(dto.getMiddleName());
+        person.setResidenceStatus(ResidenceStatus.ADMINISTRATION);
 
         String password = PasswordEncryptor.encrypt(dto.getPassword());
         User user = new User(dto.getUsername(), password, true);

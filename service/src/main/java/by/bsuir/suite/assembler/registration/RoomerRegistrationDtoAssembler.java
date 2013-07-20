@@ -6,10 +6,7 @@ import by.bsuir.suite.dao.person.RoomDao;
 import by.bsuir.suite.domain.Role;
 import by.bsuir.suite.domain.User;
 import by.bsuir.suite.domain.lan.Lan;
-import by.bsuir.suite.domain.person.Faculty;
-import by.bsuir.suite.domain.person.Link;
-import by.bsuir.suite.domain.person.Person;
-import by.bsuir.suite.domain.person.Room;
+import by.bsuir.suite.domain.person.*;
 import by.bsuir.suite.domain.work.Work;
 import by.bsuir.suite.dto.registration.RoomerRegistrationDto;
 import by.bsuir.suite.password.PasswordEncryptor;
@@ -47,6 +44,7 @@ public class RoomerRegistrationDtoAssembler implements Assembler<RoomerRegistrat
         person.setUniversityGroup(dto.getGroupNumber());
         person.setFaculty(Faculty.valueOf(dto.getFaculty().name()));
         person.setFrom(dto.getCity());
+        person.setResidenceStatus(ResidenceStatus.SETTLED);
 
         Link link = new Link();
         link.setPerson(person);

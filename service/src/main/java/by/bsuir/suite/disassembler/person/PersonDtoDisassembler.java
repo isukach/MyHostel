@@ -4,6 +4,7 @@ import by.bsuir.suite.disassembler.common.BaseDisassembler;
 import by.bsuir.suite.domain.person.Person;
 import by.bsuir.suite.dto.person.FacultyDto;
 import by.bsuir.suite.dto.person.PersonDto;
+import by.bsuir.suite.dto.person.ResidenceStatusDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +41,8 @@ public class PersonDtoDisassembler extends BaseDisassembler<PersonDto, Person> {
         dto.setAbout(person.getAbout());
         dto.setPhoneNumber(person.getPhoneNumber());
         dto.setAvatarPath(person.getAvatarPath());
+        dto.setUsername(person.getUser().getUsername());
+        dto.setResidenceStatus(ResidenceStatusDto.valueOf(person.getResidenceStatus().name()));
 
         if (person.getRoom() != null) {
             dto.setRoom(roomDtoDisassembler.disassemble(person.getRoom()));

@@ -127,7 +127,7 @@ public class PersonPage extends BasePage {
         } else if (editingAllowed && !isEdited && isDifferentUserPage) { // someone with editing rights is browsing
             form.add(new EmptyPanel("rolePanel"));
             form.add(new EmptyPanel("navigationPanel"));
-            form.add(new ToAdminButtonPanel("buttonPanel", pageOwner));
+            form.add(new ToAdminButtonPanel("buttonPanel", personDto));
             avatarPanel = new AvatarPanelView("avatarPanel", personDto.getAvatarPath());
             infoPanel = new InfoPanelView("infoPanel", personDto);
             form.add(generateLinksPanel());

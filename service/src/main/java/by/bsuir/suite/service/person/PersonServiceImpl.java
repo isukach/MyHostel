@@ -10,6 +10,7 @@ import by.bsuir.suite.domain.duty.Duty;
 import by.bsuir.suite.domain.duty.DutyStatus;
 import by.bsuir.suite.domain.lan.LanPayment;
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import by.bsuir.suite.domain.work.Job;
 import by.bsuir.suite.dto.duty.DutyStatisticsDto;
 import by.bsuir.suite.dto.person.CalendarPersonDto;
@@ -50,6 +51,14 @@ public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private LanPaymentDao lanPaymentDao;
+
+    @Override
+    public void evictPerson(String login) {
+        Person person = personDao.getPersonByUsername(login);
+        person.setRoom(null);
+        person.setResidenceStatus(ResidenceStatus.EVICTED);
+        personDao.update(person);
+    }
 
     @Override
     public CalendarPersonDto getCalendarPerson(Long id) {

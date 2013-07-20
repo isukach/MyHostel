@@ -3,6 +3,7 @@ package by.bsuir.suite.dao.duty;
 import by.bsuir.suite.dao.common.GenericDaoImpl;
 import by.bsuir.suite.domain.duty.Duty;
 import by.bsuir.suite.domain.duty.DutyStatus;
+import by.bsuir.suite.domain.person.ResidenceStatus;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -53,6 +54,8 @@ public class DutyDaoImpl extends GenericDaoImpl<Duty> implements DutyDao {
         Criteria criteria = getSession().createCriteria(getPersistentClass());
         criteria.add(
                 and(eq("closed", false), or(eq("status", DutyStatus.COMPLETED_BAD), eq("status", DutyStatus.SKIPPED))));
+        criteria.createAlias("person", "person");
+        criteria.add(not((eq("person.residenceStatus", ResidenceStatus.EVICTED))));
         criteria.addOrder(Order.asc("date"));
         criteria.setFirstResult(first);
         criteria.setMaxResults(count);
@@ -65,6 +68,7 @@ public class DutyDaoImpl extends GenericDaoImpl<Duty> implements DutyDao {
         criteria.add(
                 and(eq("closed", false), or(eq("status", DutyStatus.COMPLETED_BAD), eq("status", DutyStatus.SKIPPED))));
         criteria.createAlias("person", "person");
+        criteria.add(not((eq("person.residenceStatus", ResidenceStatus.EVICTED))));
         criteria.addOrder(Order.asc("person.lastName"));
         criteria.setFirstResult(first);
         criteria.setMaxResults(count);
@@ -79,6 +83,7 @@ public class DutyDaoImpl extends GenericDaoImpl<Duty> implements DutyDao {
         criteria.createAlias("person", "person");
         criteria.createAlias("person.room", "person_room");
         criteria.createAlias("person_room.floor", "person_room_floor");
+        criteria.add(not((eq("person.residenceStatus", ResidenceStatus.EVICTED))));
         criteria.addOrder(Order.asc("person_room_floor.number"));
         criteria.addOrder(Order.asc("person_room.number"));
         criteria.setFirstResult(first);

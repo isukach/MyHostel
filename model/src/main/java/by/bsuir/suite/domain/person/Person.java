@@ -31,6 +31,7 @@ public class Person extends BaseEntity {
     private String lastName;
     private String middleName;
     private Faculty faculty;
+    private ResidenceStatus residenceStatus;
     private String universityGroup;
     private String about;
     private String email;
@@ -229,5 +230,15 @@ public class Person extends BaseEntity {
 
     public void setFacilities(String facilities) {
         this.facilities = facilities;
+    }
+
+    @Column(name = "residence_status", nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    public ResidenceStatus getResidenceStatus() {
+        return residenceStatus;
+    }
+
+    public void setResidenceStatus(ResidenceStatus residenceStatus) {
+        this.residenceStatus = residenceStatus;
     }
 }

@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface PersonService {
 
+    void evictPerson(String login);
+
     CalendarPersonDto getCalendarPerson(Long id);
 
     PersonSearchDto getPersonSearch(Long id);

@@ -59,7 +59,7 @@ public class PersonSearchPanel extends Panel {
             public void onClick(Item item, String componentId, IModel<PersonSearchDto> personSearchDtoIModel) {
                 PageParameters pageParameters = new PageParameters();
                 BasePage.setSearchVisibility(false);
-                pageParameters.add("userName", personSearchDtoIModel.getObject().getUserName());
+                pageParameters.add(PersonPage.USERNAME_KEY, personSearchDtoIModel.getObject().getUserName());
                 setResponsePage(PersonPage.class, pageParameters);
             }
         };
