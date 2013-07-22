@@ -22,7 +22,7 @@ public final class WicketUtils {
         } else {
             textField = new TextField<String>(id);
         }
-        textField.setLabel(new StringResourceModel("label." + id, null, parent));
+        textField.setLabel(new StringResourceModel("label." + id, parent, null));
 
         if (validator != null) {
             textField.add(validator);
@@ -35,7 +35,7 @@ public final class WicketUtils {
     public static <T extends Dto> FormComponent<String> addPasswordFieldWithLabel(String id, Form<T> form,
                                                                                   Component parent) {
         FormComponent<String> passwordField = new PasswordTextField(id);
-        passwordField.setLabel(new StringResourceModel("label." + id, null, parent));
+        passwordField.setLabel(new StringResourceModel("label." + id, parent, null));
         form.add(passwordField);
         form.add(new SimpleFormComponentLabel(id + "Label", passwordField));
         return passwordField;

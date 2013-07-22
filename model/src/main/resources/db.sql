@@ -108,6 +108,29 @@ CREATE TABLE IF NOT EXISTS `hostel`.`work` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci ROW_FORMAT=DYNAMIC;
 
+CREATE TABLE IF NOT EXISTS `hostel`.`job_offer` (
+  `id` DECIMAL(8,0) NOT NULL,
+  `date` DATE NOT NULL,
+  `description` VARCHAR(50) NOT NULL,
+  `hours` INT NOT NULL,
+  `number_of_people` INT NOT NULL,
+  `isActive` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS `hostel`.`person_job_offer` (
+  `person_id` DECIMAL(8, 0) NOT NULL,
+  `jobOffer_id` DECIMAL(8, 0) NOT NULL,
+  FOREIGN KEY (`person_id` )
+    REFERENCES `hostel`.`person` (`id` )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (`jobOffer_id` )
+    REFERENCES `hostel`.`job_offer` (`id` )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci ROW_FORMAT=DYNAMIC;
+
 CREATE  TABLE IF NOT EXISTS `hostel`.`lan` (
   `id` DECIMAL(8,0) NOT NULL ,
   `ip` VARCHAR(45) NULL ,

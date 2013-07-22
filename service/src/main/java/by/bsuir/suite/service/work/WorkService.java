@@ -2,7 +2,10 @@ package by.bsuir.suite.service.work;
 
 import by.bsuir.suite.dto.work.AddUserWorkDto;
 import by.bsuir.suite.dto.work.JobDto;
+import by.bsuir.suite.dto.work.JobOfferDto;
 import by.bsuir.suite.dto.work.WorkProgressBarDto;
+
+import java.util.List;
 
 /**
  * @author d.matveenko

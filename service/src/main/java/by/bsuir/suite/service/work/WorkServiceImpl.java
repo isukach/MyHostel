@@ -2,19 +2,23 @@ package by.bsuir.suite.service.work;
 
 import by.bsuir.suite.assembler.work.AddUserWorkAssembler;
 import by.bsuir.suite.dao.person.PersonDao;
+import by.bsuir.suite.dao.work.JobOfferDao;
 import by.bsuir.suite.dao.work.WorkDao;
 import by.bsuir.suite.disassembler.work.AddUserWorkDisassembler;
+import by.bsuir.suite.disassembler.work.JobOfferDisassembler;
 import by.bsuir.suite.disassembler.work.WorkProgressBarDisassembler;
 import by.bsuir.suite.domain.work.Job;
 import by.bsuir.suite.domain.work.Work;
 import by.bsuir.suite.dto.work.AddUserWorkDto;
 import by.bsuir.suite.dto.work.JobDto;
+import by.bsuir.suite.dto.work.JobOfferDto;
 import by.bsuir.suite.dto.work.WorkProgressBarDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author d.matveenko

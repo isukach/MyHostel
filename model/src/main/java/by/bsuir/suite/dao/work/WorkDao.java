@@ -7,4 +7,6 @@ import by.bsuir.suite.domain.work.Work;
  * @author d.matveenko
  */
 public interface WorkDao extends GenericDao<Work> {
+
+    Work getWorkByPersonId(Long id);
 }

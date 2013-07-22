@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:wicket="http://wicket.apache.org/">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <wicket:panel>
+            <div id="dialog-background">
+                <div id="dialog-container">
+                    <div class="tab-content" id="summary">
+                        <h1 wicket:id="header">Dialog header</h1>
+                        <form wicket:id="jobOfferForm">
+                            <table wicket:id="commitJobOfferTable" id="worksSummary"/>
+                            <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" />
+                            <input type="submit" wicket:id="cancel" wicket:message="value:dialog.button.cancel" />
+                            <!--<button wicket:id="cancel"><wicket:message key="dialog.button.cancel"></wicket:message></button>-->
+                        </form>
+                    </div>
+                </div>
+                <div wicket:id="jobOfferConfirmDialog"></div>
+            </div>
+        </wicket:panel>
+    </body>
+</html>
