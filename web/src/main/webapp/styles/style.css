@@ -2777,6 +2777,8 @@ input[type="text"] + .yui-skin-sam {
 
 .modal-form label {
     margin-right: 7px;
+    width: 145px;
+    text-align: left;
 }
 
 .button-group {
