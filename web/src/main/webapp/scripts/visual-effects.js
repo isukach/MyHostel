@@ -1,5 +1,5 @@
 if (typeof window.getComputedStyle !== 'function') {
-    window.getComputedStyle = function(el, pseudo) {
+    window.getComputedStyle = function(el) {
         this.el = el;
         this.getPropertyValue = function(prop) {
             var re = /(\-([a-z]){1})/g;

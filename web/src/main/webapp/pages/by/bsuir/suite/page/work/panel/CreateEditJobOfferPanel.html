@@ -9,45 +9,22 @@
             <div id="dialog-background">
                 <div id="dialog-container">
                     <h1 wicket:id="header">Dialog header</h1>
-                    <form wicket:id="jobOfferForm">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <span wicket:id="dateLabel"></span>
-                                    </td>
-                                    <td>
-                                        <div wicket:id="dateField"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span wicket:id="descriptionLabel"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" wicket:id="descriptionField" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span wicket:id="hoursLabel"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" wicket:id="hoursField" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span wicket:id="numberOfPeopleLabel"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" wicket:id="numberOfPeopleField" />
-                                    </td>
-                                </tr>
-                            </table>
-                        <input type="submit" wicket:id="cancel" wicket:message="value:dialog.button.cancel" />
-                        <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" />
-                    </form>
                     <div wicket:id="jobOfferValidationPanel"></div>
+                    <form wicket:id="jobOfferForm" id="createNewJobForm" class="modal-form">
+                        <label wicket:id="dateLabel"></label>
+                        <div wicket:id="dateField"></div>
+                        <label wicket:id="descriptionLabel" for="descriptionField"></label>
+                        <input type="text" wicket:id="descriptionField" id="descriptionField">
+                        <label wicket:id="hoursLabel" for="hoursField"></label>
+                        <input type="text" wicket:id="hoursField" id="hoursField">
+                        <label wicket:id="numberOfPeopleLabel" for="numberOfPeopleField"></label>
+                        <input type="text" wicket:id="numberOfPeopleField" id="numberOfPeopleField">
+                        <div class="button-group">
+                            <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" />
+                            <input type="submit" wicket:id="cancel" wicket:message="value:dialog.button.cancel" />
+                        </div>
+                    </form>
+                    <div class="clear-fix"></div>
                 </div>
             </div>
         </wicket:panel>

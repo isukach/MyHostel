@@ -10,12 +10,14 @@
                 <div id="dialog-container">
                     <div class="tab-content" id="summary">
                         <h1 wicket:id="header">Dialog header</h1>
-                        <form wicket:id="jobOfferForm">
+                        <form wicket:id="jobOfferForm" class="modal-form">
                             <table wicket:id="commitJobOfferTable" id="worksSummary"/>
-                            <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" />
-                            <input type="submit" wicket:id="cancel" wicket:message="value:dialog.button.cancel" />
-                            <!--<button wicket:id="cancel"><wicket:message key="dialog.button.cancel"></wicket:message></button>-->
+                            <div class="button-group">
+                                <input type="submit" wicket:id="ok" wicket:message="value:dialog.button.ok" />
+                                <input type="submit" wicket:id="cancel" wicket:message="value:dialog.button.cancel" />
+                            </div>
                         </form>
+                        <div class="clear-fix"></div>
                     </div>
                 </div>
                 <div wicket:id="jobOfferConfirmDialog"></div>

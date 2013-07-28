@@ -2484,7 +2484,7 @@ input[type="checkbox"] {
 
 #languageSelection {
     margin: 5px;
-    float: right;
+    text-align: right;
 }
 
 #languageSelection a:hover {
@@ -2647,12 +2647,17 @@ input[type="checkbox"] {
 }
 
 
-.tab-bar {
+#workTabs > .tab-row > ul {
     margin-bottom: 40px;
     float: left;
+    list-style-type: none;
 }
 
-.tab {
+.tab-row + .tab-panel {
+    clear: left;
+}
+
+#workTabs > .tab-row > ul > li {
     height: 60px;
     line-height: 60px;
     display: inline-block;
@@ -2662,6 +2667,12 @@ input[type="checkbox"] {
     color: #aaa;
     font-weight: bold;
     font-size: 20px;
+    border-bottom: 0 solid #C63655;
+}
+
+#workTabs > .tab-row > ul > li > a {
+    text-decoration: none;
+    color: #aaa;
     -webkit-transition: color 0.2s ease;
     -moz-transition: color 0.2s ease;
     -ms-transition: color 0.2s ease;
@@ -2669,14 +2680,17 @@ input[type="checkbox"] {
     transition: color 0.2s ease;
 }
 
-.tab:hover {
+#workTabs > .tab-row > ul > li:hover > a {
     color: #333;
     cursor: pointer;
 }
 
-.tab.active_stage {
+#workTabs > .tab-row > ul > li.selected {
+    border-bottom-width: 3px;
+}
+
+#workTabs > .tab-row > ul > li.selected > a {
     color: #000;
-    border-bottom: 3px solid;
 }
 
 #worksSummary {
@@ -2732,10 +2746,10 @@ input[type="checkbox"] {
 }
 
 #worksSummary .work-actions button {
-    width: 30px;
+    width: auto;
     height: 30px;
     margin: 0;
-    padding: 0;
+    padding: 0 5px;
     float: left;
     display: inline-block;
     border: none;
@@ -2746,6 +2760,36 @@ input[type="checkbox"] {
 
 #worksSummary .work-actions button + button {
     margin-left: 7px;
+}
+
+.close-icon.calclose {
+    color: transparent;
+}
+
+input[type="text"] + .yui-skin-sam {
+    float: left;
+    margin-top: 13px;
+}
+
+.modal-form  {
+    margin-top: 15px;
+}
+
+.modal-form label {
+    margin-right: 7px;
+}
+
+.button-group {
+    width: 100%;
+    float: left;
+}
+
+.button-group > .button, .button-group > button, .button-group > input[type="submit"] {
+    float: right;
+}
+
+input[type="submit"] + input[type="submit"] {
+    margin-right: 7px;
 }
 
 
