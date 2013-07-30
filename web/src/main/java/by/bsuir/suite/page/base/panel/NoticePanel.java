@@ -4,6 +4,7 @@ import by.bsuir.suite.dao.notificaation.NotificationDao;
 import by.bsuir.suite.dto.notifications.NotificationDto;
 import by.bsuir.suite.page.news.components.EndlessListView;
 import by.bsuir.suite.service.notifications.NotificationService;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
 import by.bsuir.suite.session.SessionUser;
 import org.apache.wicket.AttributeModifier;
@@ -86,12 +87,12 @@ public class NoticePanel extends Panel {
     public void show(AjaxRequestTarget target) {
         container.setVisible(true);
         target.add(container);
-//        service.createDutyNotification(Long.valueOf(1));
+        ((EndlessListView)container.get("notificationsList")).reset(target);
+        target.add(container.get("notificationsList"));
     }
     public void hide(AjaxRequestTarget target) {
         container.setVisible(false);
         dao.markAsRead(((HostelAuthenticatedWebSession) getSession()).getUser().getPersonId());
-        ((EndlessListView)container.get("notificationsList")).reset(target);
         target.add(container);
     }
 

@@ -12,11 +12,12 @@ import java.util.List;
 /**
  * @author i.sukach
  */
-public class CompleteDutiesJob {
+public class CompleteDutiesJob implements HostelTask{
 
     @Autowired
     private DutyDao dutyDao;
 
+    @Override
     public void execute() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

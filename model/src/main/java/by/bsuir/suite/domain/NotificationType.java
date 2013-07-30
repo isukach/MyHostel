@@ -9,5 +9,5 @@ package by.bsuir.suite.domain;
 public enum NotificationType {
     NETWORK,
     DUTY,
-    OTHER
+    WORK, OTHER
 }

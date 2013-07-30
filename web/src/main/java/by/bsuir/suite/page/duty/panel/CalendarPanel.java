@@ -19,6 +19,8 @@ import by.bsuir.suite.page.duty.components.ExportButton;
 import by.bsuir.suite.service.duty.DutyService;
 import by.bsuir.suite.service.duty.ExportService;
 import by.bsuir.suite.service.duty.MonthService;
+import by.bsuir.suite.service.notifications.NotificationService;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.service.person.PersonService;
 import by.bsuir.suite.util.*;
 import org.apache.wicket.AttributeModifier;
@@ -79,6 +81,10 @@ public class CalendarPanel extends HostelPanel {
     @SpringBean
     @SuppressWarnings({"UnusedDeclaration"})
     private ExportService exporter;
+
+    @SpringBean
+    @SuppressWarnings({"UnusedDeclaration"})
+    private NotificationService notificationService;
 
     private CalendarMonthDto currentMonth;
 
@@ -410,9 +416,13 @@ public class CalendarPanel extends HostelPanel {
                         if (this.getSelected() == DutyStatusDto.COMPLETED_BAD
                                 || this.getSelected() == DutyStatusDto.COMPLETED_PUNISHED) {
                             calendarDutyDto.setStatusComment(this.getComment());
+                            notificationService.createNotification(calendarDutyDto.getPerson().getId(), NotificationKeys.DUTY_SKIPPED,
+                                    new String[]{String.valueOf(dto.getDate())}, null);
                         }
                         if (this.getSelected() == DutyStatusDto.SKIPPED) {
                             calendarDutyDto.setStatusComment(SKIPPED_DUTY_LABEL);
+                            notificationService.createNotification(calendarDutyDto.getPerson().getId(), NotificationKeys.DUTY_COMPLETED_BAD,
+                                    new String[]{String.valueOf(dto.getDate())}, null);
                         }
                         CalendarDutyDto updatedDuty = dutyService.updateDuty(calendarDutyDto);
                         if (shift.equals(DutyShiftDto.FIRST)) {
@@ -437,6 +447,9 @@ public class CalendarPanel extends HostelPanel {
             public void onPersonSelected(AjaxRequestTarget target) {
                 target.add(calendarContainer);
                 target.add(myDutiesPanel);
+                notificationService.createNotification(
+                        getSelectedPerson().getId(), NotificationKeys.FLOORHEAD_ASSIGN_DUTY,
+                        new String[]{DateUtils.getFormattedDate(dto.getDate().getTime())}, null);
                 occupyDuty(target, calendarDutyDto, shift, dto, item, getSelectedPerson().getId());
             }
         };

@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author i.sukach
  */
-public class AddNextMonthDutiesJob {
+public class AddNextMonthDutiesJob implements HostelTask{
 
     private static final Logger LOG = Logger.getLogger(AddNextMonthDutiesJob.class);
 
@@ -30,7 +30,8 @@ public class AddNextMonthDutiesJob {
     @Autowired
     private MonthDao monthDao;
 
-    public void addNextMonthCalendar() {
+    @Override
+    public void execute() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.set(Calendar.DAY_OF_MONTH, 1);

@@ -32,7 +32,7 @@ public class NotificationDisassembler extends BaseDisassembler<NotificationDto, 
         theDto.setText(notificationUtils.getVisibleText(object.getText()));
         theDto.setHeader(notificationUtils.getVisibleHeader(object.getHeader()));
         theDto.setIsViewed(object.getViewed());
-        theDto.setDate(DateUtils.getFormattedDate(object.getDate().getTime()));
+        theDto.setDate(DateUtils.getFormattedDateAndTime(object.getDate().getTime()));
         theDto.setCategory(notificationUtils.getCategoryAsString(object.getEntityType()));
         theDto.setHeader(resourceBundleMessageSource
                 .getMessage(object.getHeader(), notificationUtils.getParamsFromString(object.getHeaderParams()), locale));

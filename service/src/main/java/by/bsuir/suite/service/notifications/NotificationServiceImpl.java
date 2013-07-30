@@ -41,10 +41,17 @@ public class NotificationServiceImpl implements NotificationService {
         return disassembler.disassembleToList(notificationEnt);
     }
 
-    @Override
-    public void createDutyNotification(Long personId, Object []textParams, Object []headerParams) {
-        dao.createNotification(personId, NotificationType.DUTY,
-                "notifications.duty.text", "notifications.duty.text",
+//    @Override
+//    public void createDutyNotification(Long personId, Object []textParams, Object []headerParams) {
+//        dao.createNotification(personId, NotificationType.DUTY,
+//                "notifications.duty.duty_is_soon.header", "notifications.duty.duty_is_soon.text",
+//                NotificationUtils.getInstance().getParametersAsString(headerParams),
+//                NotificationUtils.getInstance().getParametersAsString(textParams));
+//    }
+
+    public void createNotification(Long personId, String notificationKey, Object []textParams, Object []headerParams) {
+        dao.createNotification(personId, NotificationUtils.getInstance().getNotificationTypeFromNotificationKey(notificationKey),
+                NotificationUtils.getHeaderKey(notificationKey), NotificationUtils.getTextKey(notificationKey),
                 NotificationUtils.getInstance().getParametersAsString(headerParams),
                 NotificationUtils.getInstance().getParametersAsString(textParams));
     }

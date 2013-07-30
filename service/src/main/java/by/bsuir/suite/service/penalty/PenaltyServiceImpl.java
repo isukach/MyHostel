@@ -8,8 +8,12 @@ import by.bsuir.suite.domain.duty.DutyStatus;
 import by.bsuir.suite.domain.person.Person;
 import by.bsuir.suite.dto.penalty.ClosePenaltyDto;
 import by.bsuir.suite.dto.penalty.PenaltyDto;
+import by.bsuir.suite.service.notifications.NotificationService;
+import by.bsuir.suite.service.notifications.NotificationServiceImpl;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.util.PenaltyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +34,10 @@ public class PenaltyServiceImpl implements PenaltyService {
 
     @Autowired
     private PersonDao personDao;
+
+    @Qualifier("notificationServiceImpl")
+    @Autowired
+    private NotificationService notificationService;
 
 
     @Override
@@ -78,6 +86,11 @@ public class PenaltyServiceImpl implements PenaltyService {
                         + closePenaltyDto.getAdditionalWorkHours());
             }
             personDao.update(person);
+
+            notificationService.createNotification(
+                    closePenaltyDto.getPersonId(), NotificationKeys.PENALTY,
+                    new String[]{String.valueOf(closePenaltyDto.getAdditionalWorkHours()),
+                                 String.valueOf(closePenaltyDto.getAdditionalDuties())}, null);
         }
     }
 }

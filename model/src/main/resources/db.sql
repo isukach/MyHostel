@@ -295,7 +295,7 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci ROW_FORMAT=DYNAMIC;
 CREATE  TABLE IF NOT EXISTS `hostel`.`notification` (
   `id` DECIMAL(8,0) NOT NULL ,
   `text` TINYTEXT NULL ,
-  `header` VARCHAR(45) NOT NULL ,
+  `header` TINYTEXT NOT NULL ,
   `type` VARCHAR(30) NOT NULL ,
   `date` DATETIME NOT NULL ,
   `header_params` VARCHAR(100) NULL,

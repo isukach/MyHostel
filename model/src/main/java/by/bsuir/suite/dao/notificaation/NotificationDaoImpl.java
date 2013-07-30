@@ -36,7 +36,7 @@ public class NotificationDaoImpl extends GenericDaoImpl<Notification> implements
             criteria.setMaxResults(limit);
             criteria.setFirstResult(offset);
         }
-        criteria.addOrder(Order.asc("date"));
+        criteria.addOrder(Order.desc("date"));
         criteria.createAlias("notification.person", "NP");
         criteria.add(Restrictions.eq("NP.id", personId));
         return criteria.list();
@@ -56,7 +56,7 @@ public class NotificationDaoImpl extends GenericDaoImpl<Notification> implements
     }
 
     @Override
-    public void createNotification(Long personId, NotificationType type, String text, String header, String headerParams, String textParams) {
+    public void createNotification(Long personId, NotificationType type, String header, String text, String headerParams, String textParams) {
         Notification theNotification = new Notification();
         theNotification.setHeader(header);
         theNotification.setText(text);

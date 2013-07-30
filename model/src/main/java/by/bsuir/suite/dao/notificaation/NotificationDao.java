@@ -20,6 +20,6 @@ public interface NotificationDao extends GenericDao<Notification> {
 
     public int notificationsCount(Long personId);
 
-    public void createNotification(Long personId, NotificationType type, String text, String header, String headerParams, String textParams);
+    public void createNotification(Long personId, NotificationType type, String header, String text, String headerParams, String textParams);
 
 }

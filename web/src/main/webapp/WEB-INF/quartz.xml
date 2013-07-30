@@ -8,7 +8,7 @@
 
     <bean id="addCalendarMonthJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="addCalendarMonthJob"/>
-        <property name="targetMethod" value="addNextMonthCalendar"/>
+        <property name="targetMethod" value="execute"/>
         <property name="concurrent" value="false"/>
     </bean>
 
@@ -30,13 +30,29 @@
         <property name="cronExpression" value="0 0 3 * * ?"/>
     </bean>
 
+    <bean id="createDutyNotificationJob" class="by.bsuir.suite.job.common.DutyNotificationJob"/>
+
+    <bean id="createDutyNotificationsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="createDutyNotificationJob"/>
+        <property name="targetMethod" value="execute"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="createDutyNotificationJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="createDutyNotificationsJobDetail"/>
+        <property name="cronExpression" value="0 */1 * * * ?"/>
+    </bean>
+
     <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="addCalendarMonthTrigger"/>
                 <ref bean="completeDutiesJobTrigger"/>
+                <ref bean="createDutyNotificationJobTrigger"/>
             </list>
         </property>
     </bean>
+
+
 
 </beans>

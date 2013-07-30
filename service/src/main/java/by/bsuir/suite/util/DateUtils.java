@@ -12,7 +12,8 @@ import java.util.Locale;
  */
 public final class DateUtils {
 
-    public static final String DATE_FORMAT = "yyyy.MM.dd HH:mm ";
+    public static final String DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm ";
+    public static final String DATE_FORMAT = "yyyy.MM.dd";
 
     private DateUtils() {}
 
@@ -50,8 +51,13 @@ public final class DateUtils {
         return months[month];
     }
 
-    public static String getFormattedDate(long msec){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+    public static String getFormattedDateAndTime(long msec){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT);
         return dateFormat.format(msec).toString();
+    }
+
+    public static String getFormattedDate(long time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        return dateFormat.format(time).toString();
     }
 }

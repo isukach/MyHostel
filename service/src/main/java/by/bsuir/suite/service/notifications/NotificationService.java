@@ -15,5 +15,7 @@ public interface NotificationService {
 
     public List<NotificationDto> loadPartOfNotifications(Long personId, int offset, int limit, Locale locale);
 
-    public void createDutyNotification(Long personId, Object[] textParams, Object[] headerParams);
+    public void createNotification(Long personId, String notificationKey, Object []textParams, Object []headerParams);
+
+//    public void createDutyNotification(Long personId, Object[] textParams, Object[] headerParams);
 }
