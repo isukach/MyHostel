@@ -2527,7 +2527,7 @@ input[type="checkbox"] {
     border: 2px solid #616161;
     width: 384px;
     top: 75px;
-    right: 55px;
+    right: 0px;
     z-index: 999;
     padding: 15px;
     -moz-box-sizing: border-box;
@@ -2605,6 +2605,13 @@ input[type="checkbox"] {
     display: block;
     padding: 0;
     margin: 2px 10px 2px 0;
+}
+
+div.new_notification {
+    background-color: #c9f8a7;
+}
+div.notification-item:hover {
+    background-color: #c0c4c4;
 }
 
 .network-indicator {

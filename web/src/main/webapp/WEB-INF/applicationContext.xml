@@ -13,6 +13,12 @@
             </list>
         </property>
     </bean>
+    <bean id="notificationMessages"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>notifications</value>
+        </property>
+    </bean>
 
     <import resource="datasource.xml"/>
     <import resource="lanDatasource.xml"/>
@@ -25,6 +31,5 @@
     <import resource="personInit.xml"/>
     <import resource="rolesInit.xml"/>
     <import resource="superuserInit.xml"/>
-    <import resource="jobOffer.xml"/>
 
 </beans>

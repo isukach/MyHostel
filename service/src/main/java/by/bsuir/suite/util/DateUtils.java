@@ -1,6 +1,7 @@
 package by.bsuir.suite.util;
 
 import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -10,6 +11,8 @@ import java.util.Locale;
  * @author i.sukach
  */
 public final class DateUtils {
+
+    public static final String DATE_FORMAT = "yyyy.MM.dd HH:mm ";
 
     private DateUtils() {}
 
@@ -45,5 +48,10 @@ public final class DateUtils {
     public static String getMonthNameRus(int month){
         String[] months = {"январь","февраль","март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"};
         return months[month];
+    }
+
+    public static String getFormattedDate(long msec){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        return dateFormat.format(msec).toString();
     }
 }

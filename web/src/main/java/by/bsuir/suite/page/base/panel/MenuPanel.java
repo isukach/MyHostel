@@ -16,7 +16,6 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.http.WebResponse;
 import org.apache.wicket.request.resource.ContextRelativeResource;
@@ -32,9 +31,15 @@ public class MenuPanel extends HostelPanel {
 
     private String color;
 
+    private NoticePanel notifications = null;
+
+    private Label notificationsCount = null;
+
     public MenuPanel(String id, String color, final boolean showTitle, final BasePage basePage) {
         super(id);
         this.color = color;
+        notifications = new NoticePanel("notification_container");
+        add(notifications);
 
         add(new Label("pageTitle", new StringResourceModel("pageTitle", this, null)) {
             @Override
@@ -102,6 +107,16 @@ public class MenuPanel extends HostelPanel {
             }
         });
 
+
+        add(new AjaxFallbackLink("notificationButton") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                notifications.show(target);
+                notificationsCount.setDefaultModelObject(notifications.getNotificationsCount());
+                target.add(notificationsCount);
+            }
+        });
+
         ProfileLinkContainer profileLinkContainer = new ProfileLinkContainer("profileLinkContainer");
         AjaxFallbackLink profileLink = new AjaxFallbackLink("profileLink") {
 
@@ -112,6 +127,9 @@ public class MenuPanel extends HostelPanel {
         };
         profileLinkContainer.add(profileLink);
         add(profileLinkContainer);
+        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount()));
+        notificationsCount.setOutputMarkupPlaceholderTag(true);
+        add(notificationsCount);
     }
 
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.USER, Roles.ADMIN, Roles.COMMANDANT, Roles.FLOOR_HEAD})

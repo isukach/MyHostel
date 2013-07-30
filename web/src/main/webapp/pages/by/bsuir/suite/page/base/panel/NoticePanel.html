@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+<wicket:panel>
+    <div id="notificationsContainer">
+       <div wicket:id="notifications" id="notifications">
+           <div id="notificationsHeader">
+               <button wicket:id="closeButton" id="closeNotifications"><wicket:message key="button.close"/></button>
+               <h2><wicket:message key="label.notifications"/></h2>
+           </div>
+           <div wicket:id="notificationsList" id="notificationsList">
+               <div wicket:id="list" class="notification-item">
+                   <span wicket:id="indicator" class="notification-category"></span>
+                   <span wicket:id="date" class="notification-date"></span>
+                   <h3 wicket:id="header" class="notification-header"></h3>
+                   <p wicket:id="text"></p>
+               </div>
+           </div>
+       </div>
+   </div>
+</wicket:panel>
+</body>
+</html>
