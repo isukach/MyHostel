@@ -19,4 +19,6 @@ public interface PersonDao extends GenericDao<Person> {
     List<Person> searchForPerson(int from, String search);
 
     Long personSearchCount(String search);
+
+    List<Long> getActivePersonIds();
 }

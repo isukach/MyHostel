@@ -13,6 +13,7 @@ import java.util.List;
  * @author i.sukach
  */
 @Repository
+@SuppressWarnings("unchecked")
 public class MonthDaoImpl extends GenericDaoImpl<Month> implements MonthDao {
 
     public MonthDaoImpl() {
@@ -20,7 +21,6 @@ public class MonthDaoImpl extends GenericDaoImpl<Month> implements MonthDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Month> findByEnabledAndFloorId(Long floorId) {
         return (List<Month>) getSession().getNamedQuery(Month.FIND_ENABLED_BY_FLOOR_ID)
                 .setParameter("floorId", floorId).list();
@@ -42,12 +42,19 @@ public class MonthDaoImpl extends GenericDaoImpl<Month> implements MonthDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Month> findByFloorId(Long floorId) {
         Criteria criteria = getSession().createCriteria(getPersistentClass(), "month");
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         criteria.createAlias("month.floor", "monthFloor");
         criteria.add(Restrictions.eq("monthFloor.id", floorId));
         return criteria.list();
+    }
+
+    @Override
+    public List<Month> findMonthByMonthYear(int month, int year) {
+        Criteria criteria = getSession().createCriteria(getPersistentClass(), "month");
+        criteria.add(Restrictions.eq("month.month", month));
+        criteria.add(Restrictions.eq("month.year", year));
+        return  criteria.list();
     }
 }

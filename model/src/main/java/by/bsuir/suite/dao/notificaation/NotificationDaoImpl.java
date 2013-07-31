@@ -51,7 +51,8 @@ public class NotificationDaoImpl extends GenericDaoImpl<Notification> implements
 
     public int notificationsCount(Long personId) {
         return ((BigInteger)getSession().createSQLQuery("SELECT count(*) FROM hostel.notification " +
-                "WHERE hostel.notification.person_id = "+personId).uniqueResult()).intValue();
+                "WHERE hostel.notification.viewed=false " +
+                "AND hostel.notification.person_id = "+personId).uniqueResult()).intValue();
 
     }
 

@@ -111,6 +111,11 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
         return personCount;
     }
 
+    @Override
+    public List getActivePersonIds() {
+        return getSession().createSQLQuery("SELECT id FROM person").list();
+    }
+
     private Conjunction createMainQueryForPersonSearch(String search) {
         Conjunction conjunction = conjunction();
         conjunction.add(not(eq("person.residenceStatus", ResidenceStatus.ADMINISTRATION)));

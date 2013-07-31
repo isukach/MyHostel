@@ -15,4 +15,6 @@ public interface MonthDao extends GenericDao<Month> {
     Month findMonthByMonthYearAndFloorId(int month, int year, Long floorId);
 
     List<Month> findByFloorId(Long floorId);
+
+    List<Month> findMonthByMonthYear(int month, int year);
 }

@@ -93,7 +93,13 @@ public class NoticePanel extends Panel {
     public void hide(AjaxRequestTarget target) {
         container.setVisible(false);
         dao.markAsRead(((HostelAuthenticatedWebSession) getSession()).getUser().getPersonId());
+        messagesCounterUpdated(getNotificationsCount(), target);
         target.add(container);
+    }
+
+    public void messagesCounterUpdated(int count, AjaxRequestTarget target)
+    {
+      //skip
     }
 
     public int getNotificationsCount() {

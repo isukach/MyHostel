@@ -11,6 +11,8 @@ import by.bsuir.suite.page.person.PersonPage;
 import by.bsuir.suite.page.work.WorkPage;
 import by.bsuir.suite.page.work.model.DetachableJobOfferTableModel;
 import by.bsuir.suite.page.work.window.CreateEditJobOfferWindow;
+import by.bsuir.suite.service.notifications.NotificationService;
+import by.bsuir.suite.service.notifications.common.NewJobIsAvailableTask;
 import by.bsuir.suite.service.work.JobOfferService;
 import by.bsuir.suite.service.work.WorkService;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
@@ -57,6 +59,7 @@ public class WorkTablePanel extends Panel {
 
     @SpringBean
     private JobOfferService jobOfferService;
+
 
     public WorkTablePanel(String id) {
         super(id);
@@ -335,6 +338,11 @@ public class WorkTablePanel extends Panel {
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.MANAGERESS})
     private class CreateNewJobOfferButton extends AjaxFallbackLink {
 
+//        @SpringBean
+//        private NotificationService notificationService;
+        @SpringBean
+        private NewJobIsAvailableTask newJobIsAvailableTask;
+
         public CreateNewJobOfferButton(String id) {
             super(id);
         }
@@ -357,6 +365,10 @@ public class WorkTablePanel extends Panel {
                         JobOfferDto createdJobOffer = panel.getJobOfferDto();
                         jobOfferService.create(createdJobOffer);
                         setResponsePage(WorkPage.class);
+                        newJobIsAvailableTask.setTime(createdJobOffer.getDate().getTime());
+                        newJobIsAvailableTask.setPersonsCount(createdJobOffer.getNumberOfPeoples());
+                        newJobIsAvailableTask.start();
+//                        notificationService.createJobNotificationTask(createdJobOffer.getNumberOfPeoples(), createdJobOffer.getDate().getTime());
                     }
                 }
             });

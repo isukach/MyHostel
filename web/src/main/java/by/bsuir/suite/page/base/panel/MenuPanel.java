@@ -38,8 +38,19 @@ public class MenuPanel extends HostelPanel {
     public MenuPanel(String id, String color, final boolean showTitle, final BasePage basePage) {
         super(id);
         this.color = color;
-        notifications = new NoticePanel("notification_container");
+
+        notifications = new NoticePanel("notification_container"){
+            @Override
+            public void messagesCounterUpdated(int count, AjaxRequestTarget target) {
+                notificationsCount.setDefaultModelObject(notifications.getNotificationsCount());
+                target.add(notificationsCount);
+            }
+        };
         add(notifications);
+
+        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount()));
+        notificationsCount.setOutputMarkupPlaceholderTag(true);
+        add(notificationsCount);
 
         add(new Label("pageTitle", new StringResourceModel("pageTitle", this, null)) {
             @Override
@@ -112,8 +123,6 @@ public class MenuPanel extends HostelPanel {
             @Override
             public void onClick(AjaxRequestTarget target) {
                 notifications.show(target);
-                notificationsCount.setDefaultModelObject(notifications.getNotificationsCount());
-                target.add(notificationsCount);
             }
         });
 
@@ -127,9 +136,7 @@ public class MenuPanel extends HostelPanel {
         };
         profileLinkContainer.add(profileLink);
         add(profileLinkContainer);
-        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount()));
-        notificationsCount.setOutputMarkupPlaceholderTag(true);
-        add(notificationsCount);
+
     }
 
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.USER, Roles.ADMIN, Roles.COMMANDANT, Roles.FLOOR_HEAD})

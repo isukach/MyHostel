@@ -1,6 +1,8 @@
 package by.bsuir.suite.service.notifications;
 
 import by.bsuir.suite.dto.notifications.NotificationDto;
+import by.bsuir.suite.service.notifications.common.NewJobIsAvailableTask;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Locale;
@@ -17,5 +19,6 @@ public interface NotificationService {
 
     public void createNotification(Long personId, String notificationKey, Object []textParams, Object []headerParams);
 
-//    public void createDutyNotification(Long personId, Object[] textParams, Object[] headerParams);
+    void createJobNotificationTask(int numberOfPeoples, long time);
+
 }

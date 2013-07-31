@@ -109,4 +109,15 @@ public class DutyDaoImpl extends GenericDaoImpl<Duty> implements DutyDao {
 
         return (List<Duty>) criteria.list();
     }
+
+    @Override
+    public List<Duty> getDutyListByDate(Date date) {
+        Criteria criteria = getSession().createCriteria(getPersistentClass(), "duty");
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.add(eq("duty.status", DutyStatus.OCCUPIED));
+        criteria.add(Restrictions.eq("duty.date", date));
+
+        return (List<Duty>) criteria.list();
+    }
+
 }

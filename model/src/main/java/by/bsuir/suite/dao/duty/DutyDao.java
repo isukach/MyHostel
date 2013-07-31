@@ -24,4 +24,8 @@ public interface DutyDao extends GenericDao<Duty> {
     Long getPenaltyCount();
 
     List<Duty> getUnevaluatedDutiesBeforeDate(Date date);
+
+    List<Duty> getDutyListByDate(Date date);
+
+
 }
