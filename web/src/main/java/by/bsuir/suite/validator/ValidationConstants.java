@@ -20,6 +20,7 @@ public final class ValidationConstants {
     public static final int DUTY_STATUS_COMMENT_MAX_LENGTH = 150;
 
     public static final int DESCRIPTION_FIELD_MAX_LENGTH = 500;
+    public static final int JOB_OFFER_DESCRIPTION_FIELD_MAX_LENGTH = 50;
 
     public static final String FIRST_NAME_LENGTH_ERROR_KEY = "info.first.name.maxlength";
     public static final String LAST_NAME_LENGTH_ERROR_KEY = "info.last.name.maxlength";
@@ -27,6 +28,10 @@ public final class ValidationConstants {
     public static final String FACILITIES_LENGTH_ERROR_KEY = "info.facilities.maxlength";
     public static final String FROM_LENGTH_ERROR_KEY = "info.city.maxlength";
     public static final String JOB_DESCRIPTION_LENGTH_ERROR_KEY = "workPage.validator.description.maxLength";
+    public static final String JOB_OFFER_DESCRIPTION_LENGTH_ERROR_KEY = "jobOfferPanel.validator.description.maxLength";
+    public static final String JOB_OFFER_HOURS_ERROR_KEY = "jobOfferPanel.validator.hours";
+    public static final String JOB_OFFER_DATE_ERROR_KEY = "jobOfferPanel.validator.date";
+    public static final String JOB_OFFER_NUMBER_OF_PEOPLE_ERROR_KEY = "jobOfferPanel.validator.numberOfPeople";
     public static final String PHONE_NUMBER_LENGTH_ERROR_KEY = "info.phone.maxlength";
     public static final String ABOUT_LENGTH_ERROR_KEY = "info.about.maxlength";
     public static final String PASSWORD_MIN_LENGTH_ERROR_KEY = "info.password.minlength";

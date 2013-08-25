@@ -3,14 +3,14 @@ package by.bsuir.suite.page.work.panel;
 import by.bsuir.suite.dto.work.JobOfferDto;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
 import by.bsuir.suite.page.work.window.ValidationWindow;
+import by.bsuir.suite.validator.*;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormValidatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxFallbackButton;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.extensions.yui.calendar.DateField;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
@@ -45,30 +45,32 @@ public abstract class CreateEditJobOfferPanel extends Panel {
         Label dateLabel = new Label("dateLabel", new StringResourceModel("label.date", this, null));
         DateField dateField = new DateField("dateField", new PropertyModel<Date>(
                 jobOfferDto, "date"));
-        dateField.setEnabled(true);
-        jobOfferForm.add(dateLabel);
-        jobOfferForm.add(dateField);
+        dateField.add(new JobOfferDateFieldValidator());
+        addOnTheForm(dateLabel, dateField);
 
         Label descriptionLabel = new Label("descriptionLabel", new StringResourceModel("label.description", this, null));
-        TextField<String> descriptionField = new TextField<String>("descriptionField", new PropertyModel<String>(jobOfferDto, "description"));
-        descriptionField.setRequired(false);
-        jobOfferForm.add(descriptionLabel);
-        jobOfferForm.add(descriptionField);
+        RequiredTextField<String> descriptionField = new RequiredTextField<String>("descriptionField", new PropertyModel<String>(jobOfferDto, "description"));
+        descriptionField.add(new MaxLengthValidator(ValidationConstants.JOB_OFFER_DESCRIPTION_FIELD_MAX_LENGTH,
+                ValidationConstants.JOB_OFFER_DESCRIPTION_LENGTH_ERROR_KEY));
+        addOnTheForm(descriptionLabel, descriptionField);
 
         Label hoursLabel = new Label("hoursLabel", new StringResourceModel("label.hours", this, null));
-        TextField<Integer> hoursField = new TextField<Integer>("hoursField", new PropertyModel<Integer>(jobOfferDto, "hours"));
-        hoursField.setRequired(false);
-        jobOfferForm.add(hoursLabel);
-        jobOfferForm.add(hoursField);
+        RequiredTextField<Integer> hoursField = new RequiredTextField<Integer>("hoursField", new PropertyModel<Integer>(jobOfferDto, "hours"));
+        hoursField.add(new JobOfferHoursValidator());
+        addOnTheForm(hoursLabel, hoursField);
 
         Label numberOfPeopleLabel = new Label("numberOfPeopleLabel", new StringResourceModel("label.numberOfPeople", this, null));
-        TextField<Integer> numberOfPeopleField = new TextField<Integer>("numberOfPeopleField", new PropertyModel<Integer>(jobOfferDto, "numberOfPeoples"));
-        numberOfPeopleField.setRequired(false);
-        jobOfferForm.add(numberOfPeopleLabel);
-        jobOfferForm.add(numberOfPeopleField);
+        RequiredTextField<Integer> numberOfPeopleField = new RequiredTextField<Integer>("numberOfPeopleField", new PropertyModel<Integer>(jobOfferDto, "numberOfPeoples"));
+        numberOfPeopleField.add(new JobOfferNumberOfPeopleValidator());
+        addOnTheForm(numberOfPeopleLabel, numberOfPeopleField);
 
         createButtons(answer, modalWindow);
         AjaxFormValidatingBehavior.addToAllFormComponents(jobOfferForm, "onkeyup", Duration.ONE_SECOND);
+    }
+
+    private void addOnTheForm(Label label, FormComponent formComponent) {
+        jobOfferForm.add(label);
+        jobOfferForm.add(formComponent);
     }
 
     private void createHeader() {

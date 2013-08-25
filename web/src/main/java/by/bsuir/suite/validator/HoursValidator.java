@@ -3,11 +3,10 @@ package by.bsuir.suite.validator;
 import by.bsuir.suite.dto.work.WorkProgressBarDto;
 import by.bsuir.suite.page.work.panel.FormForUserWorkPanel;
 import by.bsuir.suite.service.work.WorkService;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.ValidationError;
-
-import static by.bsuir.suite.util.CommonUtils.isNumber;
 
 /**
  * @author d.matveenko
@@ -28,7 +27,7 @@ public class HoursValidator implements IValidator<String> {
     @Override
     public void validate(IValidatable<String> validatable) {
         hours = validatable.getValue();
-        if(!isNumber(hours)) {
+        if(!NumberUtils.isNumber(hours) || Integer.parseInt(hours) < 0) {
             error(validatable, "workPage.validator.hours.number");
         } else {
             if(validateMaxTotalHours()) {

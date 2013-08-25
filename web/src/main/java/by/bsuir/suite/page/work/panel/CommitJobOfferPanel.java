@@ -2,10 +2,12 @@ package by.bsuir.suite.page.work.panel;
 
 import by.bsuir.suite.dto.work.CommitJobOfferDto;
 import by.bsuir.suite.page.base.NotificationWindow;
-import by.bsuir.suite.page.base.panel.ConfirmationPanel;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
+import by.bsuir.suite.validator.JobOfferHoursValidator;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormValidatingBehavior;
+import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxFallbackButton;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.extensions.ajax.markup.html.repeater.data.table.AjaxFallbackDefaultDataTable;
@@ -18,12 +20,14 @@ import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.util.time.Duration;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,9 +48,17 @@ public class CommitJobOfferPanel extends Panel {
 
     private ModalWindow jobOfferConfirmDialog;
 
+    private AjaxFallbackDefaultDataTable<CommitJobOfferDto> table;
+
+    private FeedbackPanel feedbackPanel;
+
     public CommitJobOfferPanel(String id, List<CommitJobOfferDto> commitJobOfferDtos,
                                    final ConfirmationAnswer answer, final ModalWindow modalWindow) {
         super(id);
+        feedbackPanel = new FeedbackPanel("commitJobOfferValidationPanel");
+        feedbackPanel.setOutputMarkupId(true);
+        add(feedbackPanel);
+
         if (commitJobOfferDtos != null) {
             this.commitJobOfferDtos = commitJobOfferDtos;
         }
@@ -55,6 +67,9 @@ public class CommitJobOfferPanel extends Panel {
         addJobOfferForm();
         addTable();
         createButtons(answer, modalWindow);
+        setOutputMarkupId(true);
+
+        AjaxFormValidatingBehavior.addToAllFormComponents(jobOfferForm, "onkeyup", Duration.ONE_SECOND);
     }
 
     private void addConfirmDialog() {
@@ -79,11 +94,12 @@ public class CommitJobOfferPanel extends Panel {
 
     private void addJobOfferForm() {
         jobOfferForm = new Form<Void>("jobOfferForm");
+        jobOfferForm.setOutputMarkupId(true);
         add(jobOfferForm);
     }
 
     private void addTable() {
-        AjaxFallbackDefaultDataTable<CommitJobOfferDto> table = new AjaxFallbackDefaultDataTable<CommitJobOfferDto>("commitJobOfferTable", getTableColumns(),
+        table = new AjaxFallbackDefaultDataTable<CommitJobOfferDto>("commitJobOfferTable", getTableColumns(),
                 new CommitJobOfferDataProvider(), NUMBER_ROWS);
         table.setOutputMarkupId(true);
         add(table);
@@ -98,6 +114,13 @@ public class CommitJobOfferPanel extends Panel {
             public void populateItem(Item<ICellPopulator<CommitJobOfferDto>> components, String componentId, IModel<CommitJobOfferDto> jobOfferDtoIModel) {
                 components.add(new AttributeModifier("class", "work-hours"));
                 EditablePanel panel = new EditablePanel(componentId, new PropertyModel(jobOfferDtoIModel, "hours"));
+                components.add(panel);
+            }
+        });
+        columns.add(new AbstractColumn<CommitJobOfferDto>(new StringResourceModel("commit.table.column.delete", this, null)) {
+            @Override
+            public void populateItem(Item<ICellPopulator<CommitJobOfferDto>> components, String componentId, IModel<CommitJobOfferDto> jobOfferDtoIModel) {
+                DeletePersonPanel panel = new DeletePersonPanel(componentId, jobOfferDtoIModel);
                 components.add(panel);
             }
         });
@@ -122,6 +145,8 @@ public class CommitJobOfferPanel extends Panel {
 
             @Override
             protected void onError(AjaxRequestTarget ajaxRequestTarget, Form<?> components) {
+                answer.setAnswer(false);
+                modalWindow.close(ajaxRequestTarget);
             }
 
             @Override
@@ -136,33 +161,13 @@ public class CommitJobOfferPanel extends Panel {
 
             @Override
             protected void onError(AjaxRequestTarget ajaxRequestTarget, Form<?> components) {
-                //To change body of implemented methods use File | Settings | File Templates.
+                ajaxRequestTarget.add(feedbackPanel);
             }
 
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> components) {
-//                final ConfirmationAnswer answer = new ConfirmationAnswer();
-//                jobOfferConfirmDialog.setContent(new ConfirmationPanel(jobOfferConfirmDialog.getContentId(), answer, jobOfferConfirmDialog) {
-//                    @Override
-//                    public StringResourceModel getHeaderModel() {
-//                        return new StringResourceModel("confirmWindow.header", this, null);
-//                    }
-//
-//                    @Override
-//                    public StringResourceModel getContentModel() {
-//                        return new StringResourceModel("confirmWindow.content", this, null);
-//                    }
-//                });
-//                jobOfferConfirmDialog.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
-//                    @Override
-//                    public void onClose(AjaxRequestTarget target) {
-//                        if(answer.isPositive()) {
-                            answer.setAnswer(true);
-                            modalWindow.close(target);
-//                        }
-//                    }
-//                });
-//                jobOfferConfirmDialog.show(target);
+                answer.setAnswer(true);
+                modalWindow.close(target);
             }
         };
         add(okButton);
@@ -209,10 +214,33 @@ public class CommitJobOfferPanel extends Panel {
         }
 
         private void addHoursField(IModel  model) {
-            TextField<String> hoursField = new TextField<String>("hoursField", model);
-            //TODO: add field validation    jobHoursField.add(new HoursValidator(this));
+            TextField<Integer> hoursField = new TextField<Integer>("hoursField", model);
+            hoursField.add(new JobOfferHoursValidator());
             hoursField.setRequired(true);
             add(hoursField);
+        }
+    }
+
+    public class DeletePersonPanel extends Panel {
+
+        private IModel<CommitJobOfferDto> jobOfferDtoIModel;
+
+        public DeletePersonPanel(String id, IModel<CommitJobOfferDto> jobOfferDtoIModel) {
+            super(id);
+            this.jobOfferDtoIModel = jobOfferDtoIModel;
+            addDeleteButton();
+        }
+
+        private void addDeleteButton() {
+            AjaxFallbackLink<Void> deleteButton = new AjaxFallbackLink<Void>("deleteButton") {
+
+                @Override
+                public void onClick(AjaxRequestTarget ajaxRequestTarget) {
+                    commitJobOfferDtos.remove(jobOfferDtoIModel.getObject());
+                    ajaxRequestTarget.add(CommitJobOfferPanel.this);
+                }
+            };
+            add(deleteButton);
         }
     }
 }

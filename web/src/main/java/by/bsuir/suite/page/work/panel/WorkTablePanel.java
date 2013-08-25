@@ -72,6 +72,7 @@ public class WorkTablePanel extends Panel {
 
     private void addCommitJobOfferWindow() {
         commitJobOfferWindow = new NonContentWindow("commitJobOfferDialog");
+        commitJobOfferWindow.setOutputMarkupId(true);
         add(commitJobOfferWindow);
     }
 
@@ -249,9 +250,11 @@ public class WorkTablePanel extends Panel {
             final CommitJobOfferPanel panel = new CommitJobOfferPanel(commitJobOfferWindow.getContentId(),
                     getCommitJobOfferDto(), answer, commitJobOfferWindow);
             commitJobOfferWindow.setContent(panel);
+            ajaxRequestTarget.add(panel);
             commitJobOfferWindow.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
                 @Override
                 public void onClose(AjaxRequestTarget target) {
+                    target.add(panel);
                     if(answer.isPositive()) {
                         List<CommitJobOfferDto> commitJobs = panel.getCommitJobOfferDtos();
                         jobOfferService.addJobsForAllPerson(commitJobs);
