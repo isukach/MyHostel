@@ -166,12 +166,35 @@ span.icon {
     background-repeat: no-repeat;
 }
 
+.icon .notifications_count {
+    background-color: #414141;
+    position: absolute;
+    display: inline-block;
+    z-index: 2;
+    width: auto;
+    height: 17px;
+    top: 0;
+    right: 0;
+    font-size: 13px;
+    word-spacing: normal;
+    line-height: 17px;
+    font-weight: bold;
+    color: #fff;
+    text-align: right;
+    margin: 7px;
+    padding: 0 2px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
 span.icon a {
     height: 55px;
     width: 55px;
     display: block;
     vertical-align: top;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 #search_button {
@@ -750,7 +773,6 @@ li.skipped_duty {
     display: block;
 }
 
-
 #calendar th {
     border: 2px solid #616161;
     border-width: 0 2px 2px 0;
@@ -783,7 +805,6 @@ li.skipped_duty {
 #calendar td:last-child {
     border-right-width: 0;
 }
-
 
 #calendar td .day {
     height: 100%;
@@ -1903,8 +1924,6 @@ div#progress_line {
     font-size: 32px;
 }
 
-
-
 select.triple_selection {
     width: 32%;
     margin: 0 2% 0 0;
@@ -2378,12 +2397,25 @@ input[type="checkbox"] {
     padding: 7pt 0;
 }
 
-.penalty-list th:nth-child(1) {width: 5%;}
-.penalty-list th:nth-child(2) {width: 30%;}
-.penalty-list th:nth-child(3) {width: 10%;}
-.penalty-list th:nth-child(4) {width: 15%;}
-.penalty-list th:nth-child(5) {width: 40%;}
+.penalty-list th:nth-child(1) {
+    width: 5%;
+}
 
+.penalty-list th:nth-child(2) {
+    width: 30%;
+}
+
+.penalty-list th:nth-child(3) {
+    width: 10%;
+}
+
+.penalty-list th:nth-child(4) {
+    width: 15%;
+}
+
+.penalty-list th:nth-child(5) {
+    width: 40%;
+}
 
 .penalty-list th a {
     color: #fff;
@@ -2456,7 +2488,7 @@ input[type="checkbox"] {
     box-sizing: border-box;
 }
 
-.registration-block form #registrationFields input, .registration-block form #registrationFields select{
+.registration-block form #registrationFields input, .registration-block form #registrationFields select {
     width: 80%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -2517,7 +2549,7 @@ input[type="checkbox"] {
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     z-index: 9999;
 }
 
@@ -2586,7 +2618,7 @@ input[type="checkbox"] {
 }
 
 #notifications #notificationsList .notification-item {
-    padding: 0 15px;
+    padding: 5px 15px;
 }
 
 #notifications #notificationsList .notification-item .notification-date {
@@ -2610,6 +2642,7 @@ input[type="checkbox"] {
 div.new_notification {
     background-color: #c9f8a7;
 }
+
 div.notification-item:hover {
     background-color: #c0c4c4;
 }
@@ -2652,7 +2685,6 @@ div.notification-item:hover {
     font-size: 11pt;
     text-align: justify;
 }
-
 
 #workTabs > .tab-row > ul {
     margin-bottom: 40px;
@@ -2735,10 +2767,12 @@ div.notification-item:hover {
     text-align: center;
     width: 10%;
 }
+
 #worksSummary td.work-people {
     text-align: center;
     width: 10%;
 }
+
 #worksSummary td.work-actions {
     text-align: center;
     width: 10%;
@@ -2778,7 +2812,7 @@ input[type="text"] + .yui-skin-sam {
     margin-top: 13px;
 }
 
-.modal-form  {
+.modal-form {
     margin-top: 15px;
 }
 

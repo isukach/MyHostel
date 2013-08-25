@@ -48,7 +48,12 @@ public class MenuPanel extends HostelPanel {
         };
         add(notifications);
 
-        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount()));
+        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount())) {
+            @Override
+            public boolean isVisible() {
+                return notifications.getNotificationsCount() > 0;
+            }
+        };
         notificationsCount.setOutputMarkupPlaceholderTag(true);
         add(notificationsCount);
 
