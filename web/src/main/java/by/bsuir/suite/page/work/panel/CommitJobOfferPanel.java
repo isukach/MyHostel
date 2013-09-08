@@ -52,9 +52,14 @@ public class CommitJobOfferPanel extends Panel {
 
     private FeedbackPanel feedbackPanel;
 
+    private ModalWindow mainModalWindow;
+
+    private boolean isDeleteButtonPressed;
+
     public CommitJobOfferPanel(String id, List<CommitJobOfferDto> commitJobOfferDtos,
                                    final ConfirmationAnswer answer, final ModalWindow modalWindow) {
         super(id);
+        this.mainModalWindow = modalWindow;
         feedbackPanel = new FeedbackPanel("commitJobOfferValidationPanel");
         feedbackPanel.setOutputMarkupId(true);
         add(feedbackPanel);
@@ -85,6 +90,7 @@ public class CommitJobOfferPanel extends Panel {
                 close(target);
             }
         };
+        jobOfferConfirmDialog.setOutputMarkupId(true);
         add(jobOfferConfirmDialog);
     }
 
@@ -102,7 +108,6 @@ public class CommitJobOfferPanel extends Panel {
         table = new AjaxFallbackDefaultDataTable<CommitJobOfferDto>("commitJobOfferTable", getTableColumns(),
                 new CommitJobOfferDataProvider(), NUMBER_ROWS);
         table.setOutputMarkupId(true);
-        add(table);
         jobOfferForm.add(table);
     }
 
@@ -139,6 +144,10 @@ public class CommitJobOfferPanel extends Panel {
         };
     }
 
+    public boolean isDeleteButtonPressed() {
+        return isDeleteButtonPressed;
+    }
+
     private void createButtons(final ConfirmationAnswer answer, final ModalWindow modalWindow) {
         AjaxFallbackButton cancelButton = new AjaxFallbackButton("cancel", jobOfferForm) {
 
@@ -155,7 +164,6 @@ public class CommitJobOfferPanel extends Panel {
                 modalWindow.close(ajaxRequestTarget);
             }
         };
-        add(cancelButton);
         jobOfferForm.add(cancelButton);
         AjaxFallbackButton okButton = new AjaxFallbackButton("ok", jobOfferForm) {
 
@@ -170,7 +178,6 @@ public class CommitJobOfferPanel extends Panel {
                 modalWindow.close(target);
             }
         };
-        add(okButton);
         jobOfferForm.add(okButton);
     }
 
@@ -211,6 +218,7 @@ public class CommitJobOfferPanel extends Panel {
         public EditablePanel(String id, IModel  model) {
             super(id);
             addHoursField(model);
+            setOutputMarkupId(true);
         }
 
         private void addHoursField(IModel  model) {
@@ -229,6 +237,7 @@ public class CommitJobOfferPanel extends Panel {
             super(id);
             this.jobOfferDtoIModel = jobOfferDtoIModel;
             addDeleteButton();
+            setOutputMarkupId(true);
         }
 
         private void addDeleteButton() {
@@ -237,7 +246,8 @@ public class CommitJobOfferPanel extends Panel {
                 @Override
                 public void onClick(AjaxRequestTarget ajaxRequestTarget) {
                     commitJobOfferDtos.remove(jobOfferDtoIModel.getObject());
-                    ajaxRequestTarget.add(CommitJobOfferPanel.this);
+                    isDeleteButtonPressed = true;
+                    mainModalWindow.close(ajaxRequestTarget);
                 }
             };
             add(deleteButton);

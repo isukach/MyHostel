@@ -7,14 +7,10 @@ import by.bsuir.suite.page.base.NonContentWindow;
 import by.bsuir.suite.page.base.NotificationWindow;
 import by.bsuir.suite.page.base.panel.ConfirmationPanel;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
-import by.bsuir.suite.page.person.PersonPage;
-import by.bsuir.suite.page.work.WorkPage;
 import by.bsuir.suite.page.work.model.DetachableJobOfferTableModel;
 import by.bsuir.suite.page.work.window.CreateEditJobOfferWindow;
-import by.bsuir.suite.service.notifications.NotificationService;
 import by.bsuir.suite.service.notifications.common.NewJobIsAvailableTask;
 import by.bsuir.suite.service.work.JobOfferService;
-import by.bsuir.suite.service.work.WorkService;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
 import by.bsuir.suite.util.Roles;
 import org.apache.wicket.AttributeModifier;
@@ -57,6 +53,8 @@ public class WorkTablePanel extends Panel {
 
     private ModalWindow commitJobOfferWindow;
 
+    private AjaxFallbackDefaultDataTable<JobOfferDto> table;
+
     @SpringBean
     private JobOfferService jobOfferService;
 
@@ -82,7 +80,7 @@ public class WorkTablePanel extends Panel {
     }
 
     private void addTable() {
-        AjaxFallbackDefaultDataTable<JobOfferDto> table = new AjaxFallbackDefaultDataTable<JobOfferDto>("worksSummary", getTableColumns(),
+        table = new AjaxFallbackDefaultDataTable<JobOfferDto>("worksSummary", getTableColumns(),
                 new JobOfferDataProvider(), NUMBER_ROWS);
         table.setOutputMarkupId(true);
         add(table);
@@ -226,7 +224,7 @@ public class WorkTablePanel extends Panel {
                     if(answer.isPositive()) {
                         JobOfferDto editedJobOfferDto = panel.getJobOfferDto();
                         jobOfferService.update(editedJobOfferDto);
-                        setResponsePage(WorkPage.class);
+                        target.add(table);
                     }
                 }
             });
@@ -245,22 +243,54 @@ public class WorkTablePanel extends Panel {
         }
 
         @Override
-        public void onClick(AjaxRequestTarget ajaxRequestTarget) {
+        public void onClick(final AjaxRequestTarget ajaxRequestTarget) {
             final ConfirmationAnswer answer = new ConfirmationAnswer();
             final CommitJobOfferPanel panel = new CommitJobOfferPanel(commitJobOfferWindow.getContentId(),
                     getCommitJobOfferDto(), answer, commitJobOfferWindow);
+            panel.setOutputMarkupId(true);
             commitJobOfferWindow.setContent(panel);
             ajaxRequestTarget.add(panel);
+            ajaxRequestTarget.add(commitJobOfferWindow);
             commitJobOfferWindow.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
                 @Override
                 public void onClose(AjaxRequestTarget target) {
                     target.add(panel);
+                    target.add(commitJobOfferWindow);
                     if(answer.isPositive()) {
                         List<CommitJobOfferDto> commitJobs = panel.getCommitJobOfferDtos();
                         jobOfferService.addJobsForAllPerson(commitJobs);
                         jobOfferDto.setActive(false);
                         jobOfferService.update(jobOfferDto);
-                        setResponsePage(WorkPage.class);
+                        target.add(table);
+                    } else if (panel.isDeleteButtonPressed()) {
+                        reopenCommitJobOfferDialog(target, panel.getCommitJobOfferDtos());
+                    }
+                }
+            });
+            commitJobOfferWindow.show(ajaxRequestTarget);
+        }
+
+        private void reopenCommitJobOfferDialog(final AjaxRequestTarget ajaxRequestTarget, List<CommitJobOfferDto> newJobsDtos) {
+            final ConfirmationAnswer answer = new ConfirmationAnswer();
+            final CommitJobOfferPanel panel = new CommitJobOfferPanel(commitJobOfferWindow.getContentId(),
+                    newJobsDtos, answer, commitJobOfferWindow);
+            panel.setOutputMarkupId(true);
+            commitJobOfferWindow.setContent(panel);
+            ajaxRequestTarget.add(panel);
+            ajaxRequestTarget.add(commitJobOfferWindow);
+            commitJobOfferWindow.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
+                @Override
+                public void onClose(AjaxRequestTarget target) {
+                    target.add(panel);
+                    target.add(commitJobOfferWindow);
+                    if(answer.isPositive()) {
+                        List<CommitJobOfferDto> commitJobs = panel.getCommitJobOfferDtos();
+                        jobOfferService.addJobsForAllPerson(commitJobs);
+                        jobOfferDto.setActive(false);
+                        jobOfferService.update(jobOfferDto);
+                        target.add(table);
+                    } else if (panel.isDeleteButtonPressed()) {
+                        reopenCommitJobOfferDialog(target, panel.getCommitJobOfferDtos());
                     }
                 }
             });
@@ -314,7 +344,7 @@ public class WorkTablePanel extends Panel {
                         getPersonJobOfferDto();
                         jobOfferDto.getPersonDtos().add(getPersonJobOfferDto());
                         jobOfferService.update(jobOfferDto);
-                        setResponsePage(WorkPage.class);
+                        target.add(table);
                     }
                 }
             });
@@ -341,8 +371,6 @@ public class WorkTablePanel extends Panel {
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.MANAGERESS})
     private class CreateNewJobOfferButton extends AjaxFallbackLink {
 
-//        @SpringBean
-//        private NotificationService notificationService;
         @SpringBean
         private NewJobIsAvailableTask newJobIsAvailableTask;
 
@@ -367,7 +395,7 @@ public class WorkTablePanel extends Panel {
                     if(answer.isPositive()) {
                         JobOfferDto createdJobOffer = panel.getJobOfferDto();
                         jobOfferService.create(createdJobOffer);
-                        setResponsePage(WorkPage.class);
+                        target.add(table);
                         newJobIsAvailableTask.setTime(createdJobOffer.getDate().getTime());
                         newJobIsAvailableTask.setPersonsCount(createdJobOffer.getNumberOfPeoples());
                         newJobIsAvailableTask.start();
