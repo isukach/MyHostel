@@ -21,7 +21,7 @@ public class CompleteDutiesJob implements HostelTask{
     public void execute() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DAY_OF_MONTH, -2);
+        calendar.add(Calendar.DAY_OF_MONTH, -5);
 
         List<Duty> unevaluatedDuties = dutyDao.getUnevaluatedDutiesBeforeDate(calendar.getTime());
         for (Duty duty : unevaluatedDuties) {

@@ -733,7 +733,7 @@ public class CalendarPanel extends HostelPanel {
         myDutiesPanel.updatePersonDuties(new PersonDutyDataProvider(currentUser.getId()));
     }
 
-    @AuthorizeAction(action = Action.RENDER, roles = {Roles.FLOOR_HEAD})
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.FLOOR_HEAD, Roles.COMMANDANT})
     private class SwitchMonthAccessButton extends AjaxButton {
 
         public SwitchMonthAccessButton(String id) {
