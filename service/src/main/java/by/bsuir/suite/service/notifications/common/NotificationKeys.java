@@ -12,4 +12,5 @@ public interface NotificationKeys {
     public static final String JOB_IS_SOON = "notifications.work.job_is_soon";
     public static final String DUTY_SKIPPED = "notifications.duty.completed_bad";
     public static final String DUTY_COMPLETED_BAD = "notifications.duty.duty_skipped";
+    public static final String JOB_HOURS_ADDED = "notifications.work.job_hours_added";
 }

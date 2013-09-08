@@ -6,7 +6,10 @@ import by.bsuir.suite.page.base.NotificationWindow;
 import by.bsuir.suite.page.base.panel.ConfirmationPanel;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
 import by.bsuir.suite.page.work.window.ValidationWindow;
+import by.bsuir.suite.service.notifications.NotificationService;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.service.work.WorkService;
+import by.bsuir.suite.util.DateUtils;
 import by.bsuir.suite.util.Roles;
 import by.bsuir.suite.validator.HoursValidator;
 import by.bsuir.suite.validator.MaxLengthValidator;
@@ -34,6 +37,9 @@ public abstract class FormForUserWorkPanel extends Panel {
 
     @SpringBean
     private WorkService workService;
+
+    @SpringBean
+    private NotificationService notificationService;
 
     private AddUserWorkDto addUserWorkDto;
 
@@ -175,6 +181,11 @@ public abstract class FormForUserWorkPanel extends Panel {
     private void updatePanels() {
         updateForm();
         workService.update(addUserWorkDto);
+        JobDto job = addUserWorkDto.getJobs().get(addUserWorkDto.getJobs().size()-1);
+        notificationService.createNotification(progressBarPanel.getPersonId(), NotificationKeys.JOB_HOURS_ADDED,
+                new String[]{String.valueOf(DateUtils.getFormattedDate(job.getDate().getTime())),
+                        String.valueOf(job.getHours())}, null);
+
         progressBarPanel.updateProgressBarForSelectedUser();
     }
 

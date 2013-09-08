@@ -13,9 +13,11 @@ import by.bsuir.suite.page.work.model.DetachableJobOfferTableModel;
 import by.bsuir.suite.page.work.window.CreateEditJobOfferWindow;
 import by.bsuir.suite.service.notifications.NotificationService;
 import by.bsuir.suite.service.notifications.common.NewJobIsAvailableTask;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.service.work.JobOfferService;
 import by.bsuir.suite.service.work.WorkService;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
+import by.bsuir.suite.util.DateUtils;
 import by.bsuir.suite.util.Roles;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -56,6 +58,9 @@ public class WorkTablePanel extends Panel {
     private ModalWindow createEditJobOfferWindow;
 
     private ModalWindow commitJobOfferWindow;
+
+    @SpringBean
+    private NotificationService notificationService;
 
     @SpringBean
     private JobOfferService jobOfferService;
@@ -260,6 +265,11 @@ public class WorkTablePanel extends Panel {
                         jobOfferService.addJobsForAllPerson(commitJobs);
                         jobOfferDto.setActive(false);
                         jobOfferService.update(jobOfferDto);
+                        for (PersonJobOfferDto dto : jobOfferDto.getPersonDtos()){
+                            notificationService.createNotification(dto.getId(), NotificationKeys.JOB_HOURS_ADDED,
+                                    new String[]{String.valueOf(DateUtils.getFormattedDate(jobOfferDto.getDate().getTime())),
+                                            String.valueOf(jobOfferDto.getHours())}, null);
+                        }
                         setResponsePage(WorkPage.class);
                     }
                 }
