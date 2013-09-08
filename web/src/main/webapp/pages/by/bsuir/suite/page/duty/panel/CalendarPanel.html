@@ -8,9 +8,9 @@
         </p>
 
         <form wicket:id="form">
-            <input wicket:id="exportButton" type="submit" wicket:message="value:duty.export.button.label"/>
-            <input wicket:id="enableMonthButton" type="submit" wicket:message="value:duty.enable.month.button.label"/>
-            <input wicket:id="disableMonthButton" type="submit" wicket:message="value:duty.disable.month.button.label"/>
+            <input wicket:id="exportButton"  class="export-calendar"  type="submit" wicket:message="value:duty.export.button.label"/>
+            <input wicket:id="enableMonthButton" type="submit" class="toggle-month" wicket:message="value:duty.enable.month.button.label"/>
+            <input wicket:id="disableMonthButton" type="submit" class="toggle-month"  wicket:message="value:duty.disable.month.button.label"/>
         </form>
         <div id="user_duty_list" class="base_paragraph" wicket:id="myDutiesPanel"></div>
     </div>

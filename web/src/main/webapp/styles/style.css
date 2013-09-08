@@ -2835,6 +2835,25 @@ input[type="submit"] + input[type="submit"] {
     margin-right: 7px;
 }
 
+.toggle-month {
+    margin-top: 85px !important;
+}
+
+.export-calendar + input + .toggle-month {
+    margin-top: 7px !important;
+}
+.export-calendar + .toggle-month {
+    margin-top: 7px !important;
+}
+
+.remove-subscriber {
+    margin: 0 !important;
+}
+
+
+
+
+
 
 
 
