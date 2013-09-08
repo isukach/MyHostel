@@ -371,6 +371,8 @@ public class WorkTablePanel extends Panel {
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.MANAGERESS})
     private class CreateNewJobOfferButton extends AjaxFallbackLink {
 
+//        @SpringBean
+//        private NotificationService notificationService;
         @SpringBean
         private NewJobIsAvailableTask newJobIsAvailableTask;
 
