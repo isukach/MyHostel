@@ -9,9 +9,12 @@ import by.bsuir.suite.page.base.panel.ConfirmationPanel;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
 import by.bsuir.suite.page.work.model.DetachableJobOfferTableModel;
 import by.bsuir.suite.page.work.window.CreateEditJobOfferWindow;
+import by.bsuir.suite.service.notifications.NotificationService;
 import by.bsuir.suite.service.notifications.common.NewJobIsAvailableTask;
+import by.bsuir.suite.service.notifications.common.NotificationKeys;
 import by.bsuir.suite.service.work.JobOfferService;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
+import by.bsuir.suite.util.DateUtils;
 import by.bsuir.suite.util.Roles;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -57,6 +60,9 @@ public class WorkTablePanel extends Panel {
 
     @SpringBean
     private JobOfferService jobOfferService;
+
+    @SpringBean
+    private NotificationService notificationService;
 
 
     public WorkTablePanel(String id) {
@@ -256,12 +262,17 @@ public class WorkTablePanel extends Panel {
                 public void onClose(AjaxRequestTarget target) {
                     target.add(panel);
                     target.add(commitJobOfferWindow);
-                    if(answer.isPositive()) {
+                    if (answer.isPositive()) {
                         List<CommitJobOfferDto> commitJobs = panel.getCommitJobOfferDtos();
                         jobOfferService.addJobsForAllPerson(commitJobs);
                         jobOfferDto.setActive(false);
                         jobOfferService.update(jobOfferDto);
                         target.add(table);
+                        for (PersonJobOfferDto theDto: jobOfferDto.getPersonDtos()){
+                            notificationService.createNotification(theDto.getId(), NotificationKeys.JOB_HOURS_ADDED,
+                                    new String[]{String.valueOf(DateUtils.getFormattedDate(jobOfferDto.getDate().getTime())),
+                                            String.valueOf(jobOfferDto.getHours())}, null);
+                        }
                     } else if (panel.isDeleteButtonPressed()) {
                         reopenCommitJobOfferDialog(target, panel.getCommitJobOfferDtos());
                     }
