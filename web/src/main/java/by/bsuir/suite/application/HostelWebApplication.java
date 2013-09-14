@@ -1,6 +1,7 @@
 package by.bsuir.suite.application;
 
 import by.bsuir.suite.page.duty.DutyPage;
+import by.bsuir.suite.page.help.Help;
 import by.bsuir.suite.page.lan.LanPage;
 import by.bsuir.suite.page.main.Index;
 import by.bsuir.suite.page.news.NewsPage;
@@ -59,6 +60,7 @@ public class HostelWebApplication extends AuthenticatedWebApplication {
         mount(new MountedMapperWithoutPageComponentInfo("/login", SignIn.class));
         mount(new MountedMapperWithoutPageComponentInfo("/duty", DutyPage.class));
         mount(new MountedMapperWithoutPageComponentInfo("/settings", Settings.class));
+        mount(new MountedMapperWithoutPageComponentInfo("/help", Help.class));
         mount(new MountedMapperWithoutPageComponentInfo("/index", Index.class));
         mount(new MountedMapperWithoutPageComponentInfo("/network", LanPage.class));
         mount(new MountedMapperWithoutPageComponentInfo("/work", WorkPage.class));

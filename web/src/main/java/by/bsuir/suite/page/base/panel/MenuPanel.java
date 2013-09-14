@@ -1,6 +1,7 @@
 package by.bsuir.suite.page.base.panel;
 
 import by.bsuir.suite.page.base.BasePage;
+import by.bsuir.suite.page.help.Help;
 import by.bsuir.suite.page.main.Index;
 import by.bsuir.suite.page.person.PersonPage;
 import by.bsuir.suite.page.settings.Settings;
@@ -101,6 +102,13 @@ public class MenuPanel extends HostelPanel {
             }
         });
 
+        add(new AjaxFallbackLink("helpLink") {
+
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                setResponsePage(Help.class);
+            }
+        });
 
         add(new AjaxFallbackLink("logoutLink") {
 
