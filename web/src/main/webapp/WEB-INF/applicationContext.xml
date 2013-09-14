@@ -31,5 +31,6 @@
     <import resource="personInit.xml"/>
     <import resource="rolesInit.xml"/>
     <import resource="superuserInit.xml"/>
+    <!--<import resource="systemSettingsInit.xml"/>-->
 
 </beans>

@@ -29,7 +29,7 @@ public abstract class LinkPropertyColumn<T extends Dto> extends PropertyColumn<T
     public class LinkPanel extends Panel {
         public LinkPanel(final Item item, final String componentId, final IModel<T> model) {
             super(componentId);
-
+            setOutputMarkupId(true);
             Link link = new Link("link") {
                 public void onClick() {
                     LinkPropertyColumn.this.onClick(item, componentId, model);

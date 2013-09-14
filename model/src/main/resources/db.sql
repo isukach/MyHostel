@@ -310,3 +310,11 @@ CREATE  TABLE IF NOT EXISTS `hostel`.`notification` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hostel`.`system_setting` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci ROW_FORMAT=DYNAMIC;

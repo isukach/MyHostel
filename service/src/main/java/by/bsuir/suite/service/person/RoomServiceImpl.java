@@ -26,4 +26,9 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomDto> getRoomsForFloorId(Long floorId) {
         return roomDtoDisassembler.disassembleToList(roomDao.findByFloorId(floorId));
     }
+
+    @Override
+    public RoomDto getRoomByHostelFloorAndNumber(int hostelNumber, String floorNumber, String roomNumber) {
+        return roomDtoDisassembler.disassemble(roomDao.getByHostelFloorAndRoomNumbers(hostelNumber, floorNumber, roomNumber));
+    }
 }

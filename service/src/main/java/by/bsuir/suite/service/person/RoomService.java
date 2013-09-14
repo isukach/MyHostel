@@ -11,4 +11,5 @@ public interface RoomService  {
 
     List<RoomDto> getRoomsForFloorId(Long floorId);
 
+    RoomDto getRoomByHostelFloorAndNumber(int hostelNumber, String floorNumber, String roomNumber);
 }

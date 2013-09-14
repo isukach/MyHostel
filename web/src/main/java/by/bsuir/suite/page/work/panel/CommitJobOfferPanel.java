@@ -1,8 +1,14 @@
 package by.bsuir.suite.page.work.panel;
 
+import by.bsuir.suite.dto.person.PersonDto;
+import by.bsuir.suite.dto.person.PersonSearchDto;
 import by.bsuir.suite.dto.work.CommitJobOfferDto;
+import by.bsuir.suite.page.base.BasePage;
 import by.bsuir.suite.page.base.NotificationWindow;
+import by.bsuir.suite.page.base.panel.LinkPropertyColumn;
 import by.bsuir.suite.page.duty.panel.ConfirmationAnswer;
+import by.bsuir.suite.page.person.PersonPage;
+import by.bsuir.suite.service.person.PersonService;
 import by.bsuir.suite.validator.JobOfferHoursValidator;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -27,6 +33,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
 
 import java.util.ArrayList;
@@ -41,6 +49,9 @@ import java.util.List;
 public class CommitJobOfferPanel extends Panel {
 
     private static final int NUMBER_ROWS = 15;
+
+    @SpringBean
+    private PersonService personService;
 
     private List<CommitJobOfferDto> commitJobOfferDtos = new LinkedList<CommitJobOfferDto>();
 
@@ -114,6 +125,19 @@ public class CommitJobOfferPanel extends Panel {
     private List<IColumn<CommitJobOfferDto>> getTableColumns() {
         List<IColumn<CommitJobOfferDto>> columns = new ArrayList<IColumn<CommitJobOfferDto>>();
         columns.add(getTableColumn("commit.table.column.fullName", "work-description", "personJobOfferDto.fullName"));
+//        PropertyColumn<CommitJobOfferDto> fioColumn = new LinkPropertyColumn<CommitJobOfferDto>(
+//                new StringResourceModel("commit.table.column.fullName", this, null), "personJobOfferDto.fullName") {
+//            @Override
+//            public void onClick(Item item, String componentId, IModel<CommitJobOfferDto> model) {
+//                PersonDto personDto = personService.get(model.getObject().getPersonJobOfferDto().getId());
+//                if (personDto != null) {
+//                    PageParameters pageParameters = new PageParameters();
+//                    pageParameters.add(PersonPage.USERNAME_KEY, personDto.getUsername());
+//                    setResponsePage(PersonPage.class, pageParameters);
+//                }
+//            }
+//        };
+//        columns.add(fioColumn);
         columns.add(new AbstractColumn<CommitJobOfferDto>(new StringResourceModel("commit.table.column.hours", this, null)) {
             @Override
             public void populateItem(Item<ICellPopulator<CommitJobOfferDto>> components, String componentId, IModel<CommitJobOfferDto> jobOfferDtoIModel) {

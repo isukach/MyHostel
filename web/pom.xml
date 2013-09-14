@@ -103,6 +103,7 @@
                 <directory>${basedir}/src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
+                    <include>**/*.mdb</include>
                 </includes>
             </resource>
         </resources>
