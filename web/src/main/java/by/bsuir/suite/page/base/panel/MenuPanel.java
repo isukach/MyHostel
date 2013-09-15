@@ -48,15 +48,6 @@ public class MenuPanel extends HostelPanel {
         };
         add(notifications);
 
-        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount())) {
-            @Override
-            public boolean isVisible() {
-                return notifications.getNotificationsCount() > 0;
-            }
-        };
-        notificationsCount.setOutputMarkupPlaceholderTag(true);
-        add(notificationsCount);
-
         add(new Label("pageTitle", new StringResourceModel("pageTitle", this, null)) {
             @Override
             public boolean isVisible() {
@@ -123,14 +114,6 @@ public class MenuPanel extends HostelPanel {
             }
         });
 
-
-        add(new AjaxFallbackLink("notificationButton") {
-            @Override
-            public void onClick(AjaxRequestTarget target) {
-                notifications.show(target);
-            }
-        });
-
         ProfileLinkContainer profileLinkContainer = new ProfileLinkContainer("profileLinkContainer");
         AjaxFallbackLink profileLink = new AjaxFallbackLink("profileLink") {
 
@@ -142,12 +125,39 @@ public class MenuPanel extends HostelPanel {
         profileLinkContainer.add(profileLink);
         add(profileLinkContainer);
 
+        NotificationLinkContainer notificationLinkContainer = new NotificationLinkContainer("notificationLinkContainer");
+
+        notificationsCount = new Label("notifications_count", String.valueOf(notifications.getNotificationsCount())) {
+            @Override
+            public boolean isVisible() {
+                return notifications.getNotificationsCount() > 0;
+            }
+        };
+        notificationsCount.setOutputMarkupPlaceholderTag(true);
+        notificationLinkContainer.add(notificationsCount);
+
+        notificationLinkContainer.add(new AjaxFallbackLink("notificationButton") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                notifications.show(target);
+            }
+        });
+
+        add(notificationLinkContainer);
     }
 
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.USER, Roles.ADMIN, Roles.COMMANDANT, Roles.FLOOR_HEAD})
     private static final class ProfileLinkContainer extends WebMarkupContainer {
 
         public ProfileLinkContainer(String id) {
+            super(id);
+        }
+    }
+
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.USER, Roles.ADMIN, Roles.COMMANDANT, Roles.FLOOR_HEAD})
+    private static final class NotificationLinkContainer extends WebMarkupContainer {
+
+        public NotificationLinkContainer(String id) {
             super(id);
         }
     }

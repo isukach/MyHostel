@@ -17,7 +17,7 @@ public final class CommonUtils {
         if (isNumber(group)) {
             int firstNumberOfGroup = Integer.valueOf(group.substring(0,1));
             int year = Integer.valueOf(String.valueOf(DateUtils.getCurrentYearNumber()).substring(3,4));
-            int month = DateUtils.getCurrentMonthNumber();
+            int month = DateUtils.getCurrentMonthNumber() + 1;
             int correction = 0;
             if (month >= 9 && month <= 12) {
                 correction = 1;

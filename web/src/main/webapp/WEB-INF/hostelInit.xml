@@ -89,11 +89,6 @@
         <property name="number" value="17"/>
     </bean>
 
-    <bean id="fourPeopleBlockRoom18" class="by.bsuir.suite.initializer.property.RoomProperty">
-        <property name="maxPopulation" value="4"/>
-        <property name="number" value="18"/>
-    </bean>
-
     <bean id="fourPeopleBlockRoom19" class="by.bsuir.suite.initializer.property.RoomProperty">
         <property name="maxPopulation" value="4"/>
         <property name="number" value="19"/>
@@ -129,7 +124,6 @@
                 <ref bean="fourPeopleBlockRoom15"/>
                 <ref bean="fourPeopleBlockRoom16"/>
                 <ref bean="fourPeopleBlockRoom17"/>
-                <ref bean="fourPeopleBlockRoom18"/>
                 <ref bean="fourPeopleBlockRoom19"/>
                 <ref bean="fourPeopleBlockRoom21"/>
                 <ref bean="fourPeopleBlockRoom23"/>

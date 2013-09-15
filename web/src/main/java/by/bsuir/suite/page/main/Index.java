@@ -217,7 +217,7 @@ public class Index extends BasePage {
         }
     }
 
-    @AuthorizeAction(action = Action.RENDER, roles = {Roles.REGISTRAR, Roles.SUPER_USER, Roles.FLOOR_HEAD})
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.REGISTRAR, Roles.SUPER_USER})
     private static class RegistrationLink extends AjaxFallbackLink<Void> {
 
         public RegistrationLink(String id) {

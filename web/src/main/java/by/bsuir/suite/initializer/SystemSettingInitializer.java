@@ -1,20 +1,17 @@
 package by.bsuir.suite.initializer;
 
 import by.bsuir.suite.dao.SystemSettingDao;
-import by.bsuir.suite.dao.person.RoomDao;
-import by.bsuir.suite.disassembler.person.RoomDtoDisassembler;
 import by.bsuir.suite.domain.setting.SettingEnum;
 import by.bsuir.suite.domain.setting.SystemSetting;
-import by.bsuir.suite.domain.person.Room;
 import by.bsuir.suite.dto.person.FacultyDto;
 import by.bsuir.suite.dto.person.RoomDto;
 import by.bsuir.suite.dto.registration.RoomerRegistrationDto;
 import by.bsuir.suite.service.person.RoomService;
 import by.bsuir.suite.service.registration.RegistrationService;
+import by.bsuir.suite.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.sql.*;
@@ -28,9 +25,6 @@ public class SystemSettingInitializer {
 
     @Autowired
     private RegistrationService registrationService;
-
-    @Autowired
-    private RoomDao roomDao;
 
     @Autowired
     private RoomService roomService;
@@ -62,12 +56,11 @@ public class SystemSettingInitializer {
                     RoomerRegistrationDto dto = new RoomerRegistrationDto();
                     dto.setLastName(rs.getString(2));
                     dto.setFirstName(rs.getString(3));
-                    String middleName = rs.getString(4);
-                    dto.setMiddleName(middleName);
+                    dto.setMiddleName(rs.getString(4));
                     dto.setGroupNumber(rs.getString(6));
                     dto.setRoom(getRoomDto(block));
                     dto.setFaculty(getFaculty(rs));
-                    dto.setCity(rs.getString(11));
+                    dto.setCity(capitalizeCity(rs.getString(11)));
                     dto.setRole(Roles.USER);
                     registrationService.registerRoomer(dto);
                 }
@@ -85,6 +78,14 @@ public class SystemSettingInitializer {
                 e.printStackTrace();
             }
         }
+    }
+
+    private String capitalizeCity(String city) {
+        String result = city;
+        if (result != null  && !"".equals(result)) {
+            result = StringUtils.capitalize(result);
+        }
+        return result;
     }
 
     private void createSystemSetting() {
