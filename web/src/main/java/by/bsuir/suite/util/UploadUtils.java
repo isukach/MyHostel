@@ -11,11 +11,27 @@ import java.io.File;
  */
 public final class UploadUtils {
 
-    private static final String DEFAULT_AVATAR_IMAGE_PATH = "images/avatar.png";
+    private static final String DEFAULT_AVATAR_IMAGE_PATH = "/images/avatar.png";
     private static final String AVATAR_FOLDER_NAME = "avatars";
-    private static final String AVATAR_FOLDER_WITH_SLASH = "avatars/";
+    private static final String AVATAR_FOLDER_WITH_SLASHES = "/avatars/";
+
+    private static final String HELP_FOLDER_NAME = "helps";
+    private static final String HELP_SUFFIX = ".pdf";
+
+    public static final String DEFUALT_HELP_NAME = "default";
 
     private UploadUtils() {
+    }
+
+    public static String getHeplFilePath(Application application, String role) {
+        return getHelpFolderFullPath(application) + "/" + role +  HELP_SUFFIX;
+    }
+
+    public static String getHelpFolderFullPath(Application application) {
+        ServletContext context = ((WebApplication) application).getServletContext();
+        String realPath = context.getRealPath(HELP_FOLDER_NAME);
+        realPath = realPath.replaceAll("\\\\", "/");
+        return realPath;
     }
 
     public static String getAvatarFolderFullPath(Application application) {
@@ -32,7 +48,7 @@ public final class UploadUtils {
         if(fold.exists() && fold.isDirectory()) {
             for(File file : fold.listFiles()){
                 if(file.getName().equals(fileName)) {
-                    filePath = AVATAR_FOLDER_WITH_SLASH + fileName;
+                    filePath = AVATAR_FOLDER_WITH_SLASHES + fileName;
                 }
             }
         }
