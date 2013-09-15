@@ -2609,6 +2609,9 @@ input[type="checkbox"] {
     margin: 0;
     line-height: 30px;
     padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #notifications #notificationsList {
@@ -2618,7 +2621,12 @@ input[type="checkbox"] {
 }
 
 #notifications #notificationsList .notification-item {
-    padding: 5px 15px;
+    padding: 8px 15px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+#notifications #notificationsList .notification-item:last-child {
+    border-bottom: none;
 }
 
 #notifications #notificationsList .notification-item .notification-date {
@@ -2627,7 +2635,7 @@ input[type="checkbox"] {
     display: block;
     line-height: 21px;
     color: #888;
-    font-size: 11pt;
+    font-size: 12px;
 }
 
 #notifications #notificationsList .notification-item .notification-category {
@@ -2636,7 +2644,7 @@ input[type="checkbox"] {
     float: left;
     display: block;
     padding: 0;
-    margin: 2px 10px 2px 0;
+    margin: 2px 5px 2px 0;
 }
 
 div.new_notification {
@@ -2676,13 +2684,16 @@ div.notification-item:hover {
 }
 
 #notifications #notificationsList .notification-item .notification-header {
-    font-size: 12pt;
+    font-size: 13px;
     height: 21px;
     line-height: 21px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #notifications #notificationsList .notification-item p {
-    font-size: 11pt;
+    font-size: 13px;
     text-align: justify;
 }
 
@@ -2776,6 +2787,7 @@ div.notification-item:hover {
 #worksSummary td.work-actions {
     text-align: center;
     width: 10%;
+    min-width: 162px;
 }
 
 #worksSummary .work-actions span {
@@ -2783,7 +2795,7 @@ div.notification-item:hover {
     display: inline-block;
     height: 30px;
     line-height: 30px;
-    white-space: nowrap;
+    white-space: nowrap !important;
 }
 
 #worksSummary .work-actions button {
@@ -2791,7 +2803,6 @@ div.notification-item:hover {
     height: 30px;
     margin: 0;
     padding: 0 5px;
-    float: left;
     display: inline-block;
     border: none;
     position: static;
