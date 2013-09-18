@@ -11,9 +11,9 @@ import java.io.File;
  */
 public final class UploadUtils {
 
-    private static final String DEFAULT_AVATAR_IMAGE_PATH = "/images/avatar.png";
+    private static final String DEFAULT_AVATAR_IMAGE_PATH = "images/avatar.png";
     private static final String AVATAR_FOLDER_NAME = "avatars";
-    private static final String AVATAR_FOLDER_WITH_SLASHES = "/avatars/";
+    private static final String AVATAR_FOLDER_WITH_SLASHES = "avatars/";
 
     private static final String HELP_FOLDER_NAME = "helps";
     private static final String HELP_SUFFIX = ".pdf";
