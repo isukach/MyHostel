@@ -8,4 +8,9 @@
     <import resource="datasource-test.xml"/>
     <import resource="spring-test.xml"/>
 
+    <bean id="notificationMessages"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="notifications"/>
+    </bean>
+
 </beans>

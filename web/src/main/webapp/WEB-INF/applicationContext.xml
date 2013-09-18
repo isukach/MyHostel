@@ -15,9 +15,7 @@
     </bean>
     <bean id="notificationMessages"
           class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename">
-            <value>notifications</value>
-        </property>
+        <property name="basename" value="notifications"/>
     </bean>
 
     <import resource="datasource.xml"/>

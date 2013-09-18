@@ -53,7 +53,7 @@
 
     <bean id="createWorkNotificationJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="createWorkNotificationJobDetail"/>
-        <property name="cronExpression" value="0 */1 * * * ?"/>
+        <property name="cronExpression" value="0 0 5 * * ?"/>
     </bean>
 
     <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
