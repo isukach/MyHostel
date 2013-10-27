@@ -5,5 +5,6 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean class="by.bsuir.suite.initializer.SystemSettingInitializer" init-method="init"/>
+    <bean class="by.bsuir.suite.initializer.JobHoursInitializer" init-method="init"/>
 
 </beans>

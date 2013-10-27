@@ -34,6 +34,11 @@ public final class UploadUtils {
         return realPath;
     }
 
+    public static String getHelpFileRelativePath(String fullPath) {
+        int helpIndex = fullPath.indexOf(HELP_FOLDER_NAME);
+        return fullPath.substring(helpIndex);
+    }
+
     public static String getAvatarFolderFullPath(Application application) {
         ServletContext context = ((WebApplication) application).getServletContext();
         String realPath = context.getRealPath(AVATAR_FOLDER_NAME);

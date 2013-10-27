@@ -62,6 +62,7 @@ public class ToAdminButtonPanel extends HostelPanel {
         add(evictUserConfirmationWindow);
     }
 
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.SUPER_USER, Roles.FLOOR_HEAD})
     private class EvictPersonLink extends AjaxFallbackLink {
 
         public EvictPersonLink(String id) {

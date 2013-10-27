@@ -5,5 +5,5 @@ package by.bsuir.suite.domain.setting;
  * Date: 14.09.13
  */
 public enum SettingEnum {
-    PEOPLE_REGISTERED
+    PEOPLE_REGISTERED, JOB_HOURS_INITIALIZED
 }

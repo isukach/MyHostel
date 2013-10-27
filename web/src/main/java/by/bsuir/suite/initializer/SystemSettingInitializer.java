@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 
@@ -40,9 +41,9 @@ public class SystemSettingInitializer {
         }
         if (!systemSetting.isEnabled()) {
             try {
-                String relativePath = "/2013-2014.mdb";
-                Resource resource = new ClassPathResource(relativePath);
-                String absolutePath = resource.getFile().getAbsolutePath();
+                URL url = getClass().getClassLoader().getResource("/2013-2014.mdb");
+                String absolutePath = url.getPath();
+                absolutePath = absolutePath.replaceFirst("/", "");
                 Class.forName("sun.jdbc.odbc.JdbcOdbcDriver").newInstance();
                 Connection connection = DriverManager.getConnection("jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=" + absolutePath + ";Pwd=5310103", getDBProperties());
                 Statement statement = connection.createStatement();
@@ -73,8 +74,6 @@ public class SystemSettingInitializer {
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

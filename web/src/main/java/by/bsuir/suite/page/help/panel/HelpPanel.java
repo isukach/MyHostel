@@ -1,9 +1,11 @@
 package by.bsuir.suite.page.help.panel;
 
+import by.bsuir.suite.page.help.Help;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
 import by.bsuir.suite.util.UploadUtils;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.link.InlineFrame;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.ByteArrayResource;
@@ -19,16 +21,15 @@ import java.io.IOException;
  * User: CHEB
  */
 public class HelpPanel extends Panel {
+
     public HelpPanel(String id) {
         super(id);
-
-
-        WebMarkupContainer wmc = new WebMarkupContainer("helppdf");
+        WebMarkupContainer wmc = null;
 
         try
         {
             String[] roles = ((HostelAuthenticatedWebSession) getSession()).getRoles().toArray(new String[((HostelAuthenticatedWebSession) getSession()).getRoles().size()]);
-            String currentUserRole = roles[0];
+            final String currentUserRole = roles[0];
             String filePath = UploadUtils.getHeplFilePath(getApplication(), currentUserRole);
             File filePdf;
             FileInputStream fin;
@@ -45,7 +46,7 @@ public class HelpPanel extends Panel {
             fileContent = new byte[(int)filePdf.length()];
             fin.read(fileContent);
             fin.close();
-            ResourceReference pdfResuorce = new ResourceReference(filePath) {
+            final ResourceReference pdfResource = new ResourceReference(filePath) {
                 private static final long serialVersionUID = 1L;
 
                 @Override
@@ -54,10 +55,18 @@ public class HelpPanel extends Panel {
                 }
             };
 
-            if (pdfResuorce.canBeRegistered()) {
-                getApplication().getResourceReferenceRegistry().registerResourceReference(pdfResuorce);
+            if (pdfResource.canBeRegistered()) {
+                getApplication().getResourceReferenceRegistry().registerResourceReference(pdfResource);
             }
-            wmc.add(new AttributeModifier("src", (String) RequestCycle.get().urlFor(pdfResuorce, null)));
+
+            final String relativeFilePath = UploadUtils.getHelpFileRelativePath(filePath);
+
+            wmc = new InlineFrame("helppdf", Help.class) {
+                @Override
+                protected CharSequence getURL() {
+                    return relativeFilePath;
+                }
+            };
 
         } catch (IOException e) {
             e.printStackTrace();

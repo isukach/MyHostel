@@ -10,6 +10,7 @@ import by.bsuir.suite.domain.person.*;
 import by.bsuir.suite.domain.work.Work;
 import by.bsuir.suite.dto.registration.RoomerRegistrationDto;
 import by.bsuir.suite.password.PasswordEncryptor;
+import by.bsuir.suite.util.CommonUtils;
 import by.bsuir.suite.util.HostelConstants;
 import by.bsuir.suite.util.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,16 @@ public class RoomerRegistrationDtoAssembler implements Assembler<RoomerRegistrat
 
         Work work = new Work();
         work.setPerson(person);
+
+        int personCourse = CommonUtils.getCourseByUniversityGroup(person.getUniversityGroup());
+        if (personCourse == 1) {
+            work.setRequiredHours(HostelConstants.FIRST_COURSE_HOURS);
+        } else if (personCourse == 5) {
+            work.setRequiredHours(HostelConstants.LAST_COURSE_HOURS);
+        } else {
+            work.setRequiredHours(HostelConstants.DEFAULT_WORK_HOURS);
+        }
+
         person.setWork(work);
 
         Lan lan = new Lan();

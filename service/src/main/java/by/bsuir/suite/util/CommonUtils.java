@@ -33,8 +33,11 @@ public final class CommonUtils {
 
 
     public static boolean isNumber(String string) {
-        Pattern pattern = Pattern.compile(HOURS_REGEX);
-        Matcher matcher = pattern.matcher(string);
-        return matcher.matches();
+        if (string != null) {
+            Pattern pattern = Pattern.compile(HOURS_REGEX);
+            Matcher matcher = pattern.matcher(string);
+            return matcher.matches();
+        }
+        return false;
     }
 }

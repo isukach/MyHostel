@@ -14,9 +14,7 @@ import java.util.Set;
 @Table(name = "work")
 public class Work extends BaseEntity {
 
-    public static final int BASE_TOTAL_HOURS = 40;
-
-    private int requiredHours = BASE_TOTAL_HOURS;
+    private int requiredHours;
 
     private int penaltyHours = 0;
 
