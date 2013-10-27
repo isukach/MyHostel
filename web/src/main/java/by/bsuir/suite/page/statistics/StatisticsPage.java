@@ -119,7 +119,7 @@ public class StatisticsPage extends BasePage {
                 StatisticsUtils.FLOOR_SORT_BY_COMPLETED_HOURS_PERCENTAGE, "workCompletion"));
 
         statisticsTable = new AjaxFallbackDefaultDataTable<FloorStatisticsDto>("floorStatisticsTable", columns,
-                new FloorStatisticsProvider(), 100);
+                new FloorStatisticsProvider(), 1000);
         statisticsTable.setOutputMarkupId(true);
         add(statisticsTable);
     }
