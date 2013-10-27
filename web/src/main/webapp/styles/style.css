@@ -37,7 +37,7 @@ form#login_form {
     display: block;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0px 50px 50px;
+    padding: 0 50px 50px;
     position: absolute;
     left: 62px;
     bottom: 0;
@@ -1000,7 +1000,7 @@ li.skipped_duty {
     position: absolute;
     bottom: 0;
     height: 30pt;
-    background: #616161;
+    background: #505050;
     width: 100%;
     line-height: 30pt;
     text-indent: 7pt;
@@ -1027,36 +1027,41 @@ li.skipped_duty {
 
 #tile_seh {
     background-color: #c63655;
-    background-position: 14.285714285714285714285714285714% 0;
+    background-position: 12.5% 0;
 }
 
 #tile_network {
     background-color: #7235b8;
-    background-position: 28.571428571428571428571428571429% 0;
+    background-position: 25% 0;
 }
 
 #tile_chat {
     background-color: #088f97;
-    background-position: 42.857142857142857142857142857143% 0;
+    background-position: 37.5% 0;
 }
 
 #tile_news {
     background-color: #00b0f0;
-    background-position: 57.142857142857142857142857142857% 0;
+    background-position: 50% 0;
 }
 
 #tile_registration {
-    background-color: #808080;
-    background-position: 71.428571428571428571428571428571% 0;
+    background-color: #616161;
+    background-position: 62.5% 0;
 }
 
 #tile_staff_registration {
-    background-color: #808080;
-    background-position: 85.714285714285714285714285714286% 0;
+    background-color: #616161;
+    background-position: 75% 0;
 }
 
 #tile_penalty {
-    background-color: #000;
+     background-color: #000;
+     background-position: 87.5% 0;
+}
+
+#tile_statistics {
+    background-color: #616161;
     background-position: 100% 0;
 }
 
