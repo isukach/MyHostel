@@ -972,9 +972,11 @@ li.skipped_duty {
 }
 
 .tile {
-    margin: 0 9.5% 9.5% 0;
+    margin: 0 55px 55px 0;
     padding: 0;
-    width: 27%;
+    width: -webkit-calc((100% - 110px) / 3);
+    width: -moz-calc((100% - 110px) / 3);
+    width: calc((100% - 110px) / 3);
     position: relative;
     overflow: hidden;
     float: left;
