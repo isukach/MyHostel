@@ -11,6 +11,7 @@ import by.bsuir.suite.page.registration.StaffRegistrationPage;
 import by.bsuir.suite.page.registration.RegistrationPage;
 import by.bsuir.suite.page.settings.Settings;
 import by.bsuir.suite.page.sign.in.SignIn;
+import by.bsuir.suite.page.statistics.StatisticsPage;
 import by.bsuir.suite.page.work.WorkPage;
 import by.bsuir.suite.session.HostelAuthenticatedWebSession;
 import org.apache.wicket.Page;
@@ -69,6 +70,7 @@ public class HostelWebApplication extends AuthenticatedWebApplication {
         mount(new MountedMapperWithoutPageComponentInfo("/penalty", PenaltyPage.class));
         mount(new MountedMapperWithoutPageComponentInfo("/registration", RegistrationPage.class));
         mount(new MountedMapperWithoutPageComponentInfo("/adminRegistration", StaffRegistrationPage.class));
+        mount(new MountedMapperWithoutPageComponentInfo("/statistics", StatisticsPage.class));
     }
 
     /**

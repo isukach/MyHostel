@@ -187,6 +187,11 @@ public class Person extends BaseEntity {
         this.extraDuties = extraDuties;
     }
 
+    @Transient
+    public int getTotalRequiredDuties() {
+        return getExtraDuties() + getRequiredDuties();
+    }
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "person")
     public Lan getLan() {
         return lan;

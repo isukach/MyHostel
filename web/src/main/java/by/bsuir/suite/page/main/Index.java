@@ -12,6 +12,7 @@ import by.bsuir.suite.page.news.components.EndlessListView;
 import by.bsuir.suite.page.penalty.PenaltyPage;
 import by.bsuir.suite.page.registration.RegistrationPage;
 import by.bsuir.suite.page.registration.StaffRegistrationPage;
+import by.bsuir.suite.page.statistics.StatisticsPage;
 import by.bsuir.suite.page.work.WorkPage;
 import by.bsuir.suite.service.lan.LanService;
 import by.bsuir.suite.service.news.Filter;
@@ -79,6 +80,8 @@ public class Index extends BasePage {
 
         Link staffRegistrationLink = new StaffRegistrationLink("staffRegistrationLink");
 
+        Link statisticsLink = new StatisticsLink("statisticsLink");
+
         Link newsLink = new NewsLink("newsLink");
 
         Label sehLinkLabel = new Label("sehLinkLabel", new StringResourceModel("linkTitle.work", this, null));
@@ -103,6 +106,11 @@ public class Index extends BasePage {
         staffRegistrationLink.add(staffRegistrationLinkLabel);
         add(staffRegistrationLink);
 
+        Label statisticsLinkLabel = new Label("statisticsLinkLabel",
+                new StringResourceModel("linkTitle.statistics", this, null));
+        statisticsLink.add(statisticsLinkLabel);
+        add(statisticsLink);
+
         Label penaltyLinkLabel = new Label("penaltyLinkLabel", new StringResourceModel("linkTitle.penalty", this, null));
         penaltyLink.add(penaltyLinkLabel);
         add(penaltyLink);
@@ -121,22 +129,21 @@ public class Index extends BasePage {
                 final NewsDto item = components.getModelObject();
                 WebComponent indicator = new WebComponent("newsIndicator");
                 String resKey = NewsInfo.getCategoryHashMap().get(item.getCategory());
-                resKey = resKey.substring(resKey.lastIndexOf('.')+1);
-                indicator.add(new AttributeModifier("class", resKey){
-                    protected String newValue(final String currentValue, final String replacementValue){
-                        return currentValue +" "+ replacementValue+"-indicator";
+                resKey = resKey.substring(resKey.lastIndexOf('.') + 1);
+                indicator.add(new AttributeModifier("class", resKey) {
+                    protected String newValue(final String currentValue, final String replacementValue) {
+                        return currentValue + " " + replacementValue + "-indicator";
                     }
                 });
                 components.add(indicator);
                 components.add(new Label("newsCaption", item.getCaption()));
-                components.add(new Label("newsDate", CalendarPanel.getDateString(new Date(item.getTimestamp().getTime()),getLocale(), this)));
+                components.add(new Label("newsDate", CalendarPanel.getDateString(new Date(item.getTimestamp().getTime()), getLocale(), this)));
                 MultiLineLabel label = new MultiLineLabel("newsBody", item.getText());
                 label.setEscapeModelStrings(false);
                 components.add(label);
-                if(item.getUserName() != null){
+                if (item.getUserName() != null) {
                     components.add(new Label("newsAutor", item.getPersonName()));
-                }
-                else {
+                } else {
                     components.add(new WebComponent("newsAutor"));
                 }
             }
@@ -144,8 +151,8 @@ public class Index extends BasePage {
             @Override
             protected List<NewsDto> loadItems(int offset, int limit) {
                 List<NewsCategory> categories = new ArrayList<NewsCategory>(6);
-                for(NewsCategory category: NewsInfo.getCategoryHashMap().keySet()) {
-                    if(selectedCategories.contains(NewsInfo.getCategoryHashMap().get(category))) {
+                for (NewsCategory category : NewsInfo.getCategoryHashMap().keySet()) {
+                    if (selectedCategories.contains(NewsInfo.getCategoryHashMap().get(category))) {
                         categories.add(category);
                     }
                 }
@@ -155,19 +162,18 @@ public class Index extends BasePage {
         add(newsContainer);
     }
 
-    private void createNewsCheckboxes(){
-        for (String key: NewsInfo.getCategoriesKeys()){
-            final CheckBox checkBox = new CheckBox("filter."+key, Model.of(Boolean.TRUE));
+    private void createNewsCheckboxes() {
+        for (String key : NewsInfo.getCategoriesKeys()) {
+            final CheckBox checkBox = new CheckBox("filter." + key, Model.of(Boolean.TRUE));
             final String finalKey = key;
             checkBox.add(new OnChangeAjaxBehavior() {
                 @Override
                 protected void onUpdate(AjaxRequestTarget target) {
-                    if(checkBox.getModelObject()) {
+                    if (checkBox.getModelObject()) {
                         selectedCategories.add(finalKey);
                     } else if (selectedCategories.size() > 1) {
                         selectedCategories.remove(finalKey);
-                    }
-                    else {
+                    } else {
                         checkBox.setModelObject(true);
                     }
                     newsContainer.reset(target);
@@ -206,7 +212,8 @@ public class Index extends BasePage {
     }
 
     @AuthorizeAction(action = Action.RENDER, roles = {Roles.ADMIN, Roles.USER, Roles.FLOOR_HEAD,
-            Roles.SUPER_USER, Roles.MANAGERESS})private static class WorkLink extends AjaxFallbackLink<Void> {
+            Roles.SUPER_USER, Roles.MANAGERESS})
+    private static class WorkLink extends AjaxFallbackLink<Void> {
         public WorkLink(String id) {
             super(id);
         }
@@ -236,6 +243,7 @@ public class Index extends BasePage {
         public PenaltyLink(String id) {
             super(id);
         }
+
         @Override
         public void onClick(AjaxRequestTarget ajaxRequestTarget) {
             setResponsePage(PenaltyPage.class);
@@ -252,6 +260,20 @@ public class Index extends BasePage {
         @Override
         public void onClick(AjaxRequestTarget target) {
             setResponsePage(StaffRegistrationPage.class);
+        }
+    }
+
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.SUPER_USER, Roles.FLOOR_HEAD,
+            Roles.EDUCATOR, Roles.MANAGERESS, Roles.COMMANDANT})
+    private static class StatisticsLink extends AjaxFallbackLink<Void> {
+
+        public StatisticsLink(String id) {
+            super(id);
+        }
+
+        @Override
+        public void onClick(AjaxRequestTarget target) {
+            setResponsePage(StatisticsPage.class);
         }
     }
 

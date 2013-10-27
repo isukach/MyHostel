@@ -1,6 +1,7 @@
 package by.bsuir.suite.util;
 
 import by.bsuir.suite.domain.person.Person;
+import by.bsuir.suite.domain.work.Job;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,5 +27,13 @@ public final class EntityUtils {
                 .append(person.getMiddleName() != null ?
                         StringUtils.getInitial(person.getMiddleName()) : "");
         return builder.toString();
+    }
+
+    public static int countPersonCompletedHours(Person person) {
+        int completedHours = 0;
+        for (Job job : person.getWork().getJobs()) {
+            completedHours += job.getHours();
+        }
+        return completedHours;
     }
 }

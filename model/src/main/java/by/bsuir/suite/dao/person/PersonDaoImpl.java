@@ -7,6 +7,7 @@ import by.bsuir.suite.domain.person.ResidenceStatus;
 import org.apache.commons.lang.math.NumberUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Conjunction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -51,6 +52,21 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
             criteria.createAlias("person.room", "personRoom");
             criteria.add(Restrictions.eq("personRoom.id", roomId));
         }
+        return criteria.list();
+    }
+
+    @Override
+    public List<Person> findByFloorId(long floorId, String sortBy) {
+        Criteria criteria = getSession().createCriteria(getPersistentClass(), "person");
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.createAlias("person.room", "personRoom");
+        criteria.createAlias("personRoom.floor", "personFloor");
+        criteria.add(Restrictions.eq("personFloor.id", floorId));
+
+        if (sortBy != null) {
+            criteria.addOrder(Order.asc(sortBy));
+        }
+
         return criteria.list();
     }
 
@@ -114,6 +130,17 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
     @Override
     public List getActivePersonIds() {
         return getSession().createSQLQuery("SELECT id FROM person").list();
+    }
+
+    @Override
+    public int getCountForFloor(Long floorId) {
+        Criteria criteria = getSession().createCriteria(getPersistentClass(), "person");
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        criteria.createAlias("person.room", "personRoom");
+        criteria.createAlias("personRoom.floor", "personFloor");
+        criteria.add(Restrictions.eq("personFloor.id", floorId));
+
+        return ((Long) criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
     }
 
     private Conjunction createMainQueryForPersonSearch(String search) {
