@@ -996,6 +996,7 @@ li.skipped_duty {
 
 .tile:nth-child(3n) {
     margin-right: 0;
+    margin-left: -1px;
 }
 
 .tile_title {
