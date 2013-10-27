@@ -63,6 +63,7 @@
     margin: 0;
     padding: 0;
     position: relative;
+    height: 400px;
 }
 
 #hostel_navigator {
@@ -213,7 +214,7 @@
     padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 450px;
+    max-height: 400px;
     min-height: 100px;
 }
 
@@ -249,16 +250,13 @@
     font-weight: bold;
 }
 
-.room_card button {
+.room_card > .button-container {
     float: right !important;
     clear: right !important;
-    background-color: #999 !important;
     width: 69% !important;
     display: block !important;
     box-sizing: border-box !important;
     -moz-box-sizing: border-box !important;
-    padding: 0pt 3pt !important;
-    font-size: 10.5pt !important;
     line-height: 16pt !important;
     height: 16pt !important;
     margin: 0 0 2pt 0 !important;
@@ -266,12 +264,34 @@
     overflow: hidden;
 }
 
+.room_card button {
+    background-color: #999 !important;
+    width: 100% !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    padding: 0 3pt !important;
+    font-size: 10.5pt !important;
+    line-height: 16pt !important;
+    height: 16pt !important;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 !important;
+}
+
+@media screen and (max-width:1350px) {
+    .room_card > .button-container {
+        width: 100% !important;
+    }
+}
+
 .room_card button:hover {
     background-color: #eee !important;
     color: #333;
 }
 
-.room_card button:last-child {
+.room_card .button-container:last-child {
     margin-bottom: 0 !important;
 }
 
@@ -279,6 +299,7 @@
     float: left;
     padding: 4pt 6pt;
     width: 30%;
+    min-width: 50px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     
@@ -288,23 +309,24 @@
 }
 
 .room_card {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     background-color: #616161;
     color: white;
-    width: 32%;
+    width: -webkit-calc((100% - 40px) / 3);
+    width: -moz-calc((100% - 40px) / 3);
+    width: calc((100% - 40px) / 3);
     border: 3px solid #616161;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    
-    margin: 0 2% 10pt 0;
+    margin: 0 20px 20px -1px;
 }
-
 .room_card:nth-child(3n) {
-    margin: 0 0 10pt 0;
+    margin-right: 0;
 }
 
 #room_cards {
-    max-height: 160pt;
+    max-height: 373px;
     overflow-x: hidden;
     overflow-y: auto;
 }
