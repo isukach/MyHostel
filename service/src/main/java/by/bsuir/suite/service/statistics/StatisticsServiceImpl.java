@@ -28,18 +28,26 @@ public class StatisticsServiceImpl implements StatisticsService {
     private PersonDao personDao;
 
     @Override
-    public List<FloorStatisticsDto> getFloorStatistics(long floorId, String sortBy) {
+    public List<FloorStatisticsDto> getFloorStatistics(long floorId, String sortBy, boolean isAscending) {
         List<Person> personList;
         if (StatisticsUtils.FLOOR_SORT_BY_FIRST_NAME.equals(sortBy)
-                || StatisticsUtils.FLOOR_SORT_BY_LAST_NAME.equals(sortBy)) {
-            personList = personDao.findByFloorId(floorId, sortBy);
+                || StatisticsUtils.FLOOR_SORT_BY_LAST_NAME.equals(sortBy)
+                || StatisticsUtils.FLOOR_SORT_BY_GROUP.equals(sortBy)
+                || StatisticsUtils.FLOOR_SORT_BY_ROOM.equals(sortBy)) {
+            personList = personDao.findByFloorId(floorId, sortBy, isAscending);
         } else {
-            personList = personDao.findByFloorId(floorId, null);
+            personList = personDao.findByFloorId(floorId, null, isAscending);
             if (StatisticsUtils.FLOOR_SORT_BY_COMPLETED_HOURS_PERCENTAGE.equals(sortBy)) {
-                Collections.sort(personList, new ByWorkPercentageComparator());
+                Collections.sort(personList,
+                        isAscending
+                                ? new ByWorkPercentageComparator()
+                                : Collections.reverseOrder(new ByWorkPercentageComparator()));
             }
             if (StatisticsUtils.FLOOR_SORT_BY_COMPLETED_DUTIES_PERCENTAGE.equals(sortBy)) {
-                Collections.sort(personList, new ByDutyPercentageComparator());
+                Collections.sort(personList,
+                        isAscending
+                                ? new ByDutyPercentageComparator()
+                                : Collections.reverseOrder(new ByDutyPercentageComparator()));
             }
         }
         return floorStatisticsDtoDisassembler.disassembleToList(personList);

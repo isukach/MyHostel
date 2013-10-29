@@ -18,6 +18,10 @@ public class FloorStatisticsDto implements IClusterable, Dto {
 
     private String dutyCompletion;
 
+    private String room;
+
+    private String group;
+
     public long getPersonId() {
         return personId;
     }
@@ -56,5 +60,21 @@ public class FloorStatisticsDto implements IClusterable, Dto {
 
     public void setDutyCompletion(String dutyCompletion) {
         this.dutyCompletion = dutyCompletion;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

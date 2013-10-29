@@ -2786,8 +2786,7 @@ div.notification-item:hover {
 }
 
 .grid th.wicket_orderDown::after {
-    /*content: "\25B2";*/
-    content: "\25BC";
+    content: "\25B2";
     display: inline-block;
     margin-left: 5px;
 }

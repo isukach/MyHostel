@@ -109,10 +109,14 @@ public class StatisticsPage extends BasePage {
     private void addFloorStatisticsTable() {
         List<IColumn<FloorStatisticsDto>> columns = new ArrayList<IColumn<FloorStatisticsDto>>();
 
+        columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.room", this, null),
+                StatisticsUtils.FLOOR_SORT_BY_ROOM, "room"));
         columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.first.name", this, null),
                 StatisticsUtils.FLOOR_SORT_BY_FIRST_NAME, "firstName"));
         columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.last.name", this, null),
                 StatisticsUtils.FLOOR_SORT_BY_LAST_NAME, "lastName"));
+        columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.group", this, null),
+                StatisticsUtils.FLOOR_SORT_BY_GROUP, "group"));
         columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.duty.percentage", this, null),
                 StatisticsUtils.FLOOR_SORT_BY_COMPLETED_DUTIES_PERCENTAGE, "dutyCompletion"));
         columns.add(new PropertyColumn<FloorStatisticsDto>(new StringResourceModel("tableTitle.work.percentage", this, null),
@@ -133,7 +137,7 @@ public class StatisticsPage extends BasePage {
 
         @Override
         public Iterator<? extends FloorStatisticsDto> iterator(int i, int i2) {
-            return statisticsService.getFloorStatistics(floorId, getSort().getProperty()).iterator();
+            return statisticsService.getFloorStatistics(floorId, getSort().getProperty(), getSort().isAscending()).iterator();
         }
 
         @Override
@@ -147,14 +151,16 @@ public class StatisticsPage extends BasePage {
         }
     }
 
-    @AuthorizeAction(action = Action.RENDER, roles = {Roles.COMMANDANT, Roles.EDUCATOR, Roles.SUPER_USER})
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.COMMANDANT, Roles.EDUCATOR, Roles.SUPER_USER,
+            Roles.MANAGERESS})
     private class FloorLabel extends Label {
         public FloorLabel(String floorLabel, StringResourceModel stringResourceModel) {
             super(floorLabel, stringResourceModel);
         }
     }
 
-    @AuthorizeAction(action = Action.RENDER, roles = {Roles.COMMANDANT, Roles.EDUCATOR, Roles.SUPER_USER})
+    @AuthorizeAction(action = Action.RENDER, roles = {Roles.COMMANDANT, Roles.EDUCATOR, Roles.SUPER_USER,
+            Roles.MANAGERESS})
     private class FloorDropDown extends DropDownChoice<SelectOption> {
         public FloorDropDown(String id, IModel<SelectOption> model,
                              List<? extends SelectOption> choices, IChoiceRenderer<? super SelectOption> renderer) {

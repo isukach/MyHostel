@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface StatisticsService {
 
-    List<FloorStatisticsDto> getFloorStatistics(long floorId, String sort);
+    List<FloorStatisticsDto> getFloorStatistics(long floorId, String sort, boolean isAscending);
 
     FloorStatisticsDto getByPersonId(long personId);
 

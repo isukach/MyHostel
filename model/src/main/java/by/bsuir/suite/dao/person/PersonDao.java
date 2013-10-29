@@ -16,7 +16,7 @@ public interface PersonDao extends GenericDao<Person> {
 
     List<Person> findByRoomId(Long roomId);
 
-    List<Person> findByFloorId(long floorId, String sortBy);
+    List<Person> findByFloorId(long floorId, String sortBy, boolean isAscending);
 
     List<Person> searchForPerson(int from, String search);
 

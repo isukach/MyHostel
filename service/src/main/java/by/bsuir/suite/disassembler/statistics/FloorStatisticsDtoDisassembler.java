@@ -18,6 +18,8 @@ public class FloorStatisticsDtoDisassembler extends BaseDisassembler<FloorStatis
         dto.setPersonId(person.getId());
         dto.setFirstName(person.getFirstName());
         dto.setLastName(person.getLastName());
+        dto.setGroup(person.getUniversityGroup());
+        dto.setRoom(person.getRoom().getFloor().getNumber() + person.getRoom().getNumber());
 
         String workCompletion = EntityUtils.countPersonCompletedHours(person) + "/" + (person.getWork().getTotalRequiredHours());
         String dutyCompletion = person.getDuties().size() + "/" + person.getTotalRequiredDuties();

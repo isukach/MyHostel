@@ -23,6 +23,8 @@ import static org.hibernate.criterion.Restrictions.*;
 @Repository
 public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
 
+    private static final String ROOM_SORT = "room";
+
     public PersonDaoImpl() {
         super(Person.class);
     }
@@ -56,7 +58,7 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
     }
 
     @Override
-    public List<Person> findByFloorId(long floorId, String sortBy) {
+    public List<Person> findByFloorId(long floorId, String sortBy, boolean isAscending) {
         Criteria criteria = getSession().createCriteria(getPersistentClass(), "person");
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         criteria.createAlias("person.room", "personRoom");
@@ -64,7 +66,13 @@ public class PersonDaoImpl extends GenericDaoImpl<Person> implements PersonDao {
         criteria.add(Restrictions.eq("personFloor.id", floorId));
 
         if (sortBy != null) {
-            criteria.addOrder(Order.asc(sortBy));
+            if (sortBy.equals(ROOM_SORT)) {
+                criteria.addOrder(
+                        isAscending ? Order.asc("personRoom.number") : Order.desc("personRoom.number"));
+            } else {
+                criteria.addOrder(
+                        isAscending ? Order.asc(sortBy) : Order.desc(sortBy));
+            }
         }
 
         return criteria.list();
